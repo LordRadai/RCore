@@ -1,5 +1,5 @@
 #include "RINI.h"
-#include "utils/RString/RString.h"
+#include "RString/RString.h"
 
 //Create an INI object from the specified filepath
 RINI* RINI::open(std::string path)

@@ -1,13 +1,5 @@
 #include "RFile.h"
-#include "../RMemory/RMemory.h"
-
-RFile::RFile()
-{
-}
-
-RFile::~RFile()
-{
-}
+#include "RMemory/RMemory.h"
 
 RFile* RFile::open(std::wstring fileName, FileMode mode)
 {

@@ -12,8 +12,8 @@ enum FileMode
 class RFile
 {
 public:
-	RFile();
-	~RFile();
+	RFile() {}
+	~RFile() {}
 
 	static RFile* open(std::wstring fileName, FileMode mode);
 	static RFile* create(std::wstring fileName);
