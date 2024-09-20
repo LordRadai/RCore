@@ -3,6 +3,8 @@
 #include <string>
 #include <debugapi.h>
 
+#define BUFFER_SIZE 1024
+
 enum MsgLevel
 {
 	MsgLevel_Info = 1000000001,
