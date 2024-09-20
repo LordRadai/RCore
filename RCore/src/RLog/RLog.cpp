@@ -20,6 +20,11 @@ RLog::~RLog()
 {
 }
 
+void RLog::shutdown()
+{
+	this->m_logFile->shutdown();
+}
+
 void RLog::createLog(std::string path)
 {
 	this->m_logPath = path;

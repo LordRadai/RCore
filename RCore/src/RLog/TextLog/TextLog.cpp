@@ -48,6 +48,11 @@ bool TextLog::isInitialised()
     return this->m_init;
 }
 
+void TextLog::shutdown()
+{
+    this->m_ofstream.close();
+}
+
 void TextLog::setLogPath(std::string path)
 {
     this->m_outPath = path;
@@ -69,10 +74,8 @@ bool TextLog::createLogFile()
         std::filesystem::create_directories(parentPath);
 
     std::string filePath = this->m_outPath;
-    std::string now = "[" + getCurrentDateTime("now") + "]";
 
-    std::ofstream out(filePath.c_str(), std::ios_base::out);
-    out.close();
+    this->m_ofstream = std::ofstream(filePath.c_str(), std::ios_base::out);
 
     return true;
 }
@@ -94,14 +97,12 @@ bool TextLog::addLog(bool print_time, const char* fmt, ...)
     std::string filePath = this->m_outPath;
     std::string now = "[" + getCurrentDateTime("now") + "]";
 
-    std::ofstream out(filePath.c_str(), std::ios_base::out | std::ios_base::app);
-
     if (print_time)
-        out << now << '\t' << msg_buf;
+        this->m_ofstream << now << '\t' << msg_buf;
     else
-        out << msg_buf;
+        this->m_ofstream << msg_buf;
 
-    out.close();
+    this->m_ofstream.flush();
 
     return true;
 }

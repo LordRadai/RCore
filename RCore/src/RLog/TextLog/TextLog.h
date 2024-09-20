@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 
 class TextLog
 {
@@ -8,6 +9,8 @@ public:
 	~TextLog();
 
 	bool isInitialised();
+	void shutdown();
+
 	void setLogPath(std::string path);
 	std::string getLogPath();
 
@@ -17,4 +20,5 @@ public:
 private:
 	bool m_init;
 	std::string m_outPath;
+	std::ofstream m_ofstream;
 };

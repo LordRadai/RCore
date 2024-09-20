@@ -10,6 +10,8 @@ public:
 	RLog(MsgLevel level, std::string path, std::string log_name);
 	~RLog();
 
+	void shutdown();
+
 	void createLog(std::string path);
 	UINT getLogLevel();
 	void setLogLevel(UINT level);
