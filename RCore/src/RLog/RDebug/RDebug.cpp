@@ -11,7 +11,7 @@ void RDebug::debuggerOut(UINT usr_level, MsgLevel level, const char* fmt, ...)
 	std::string msg_body;
 	std::string thread_id = std::to_string(GetCurrentThreadId());
 
-	char msg[256];
+	char msg[BUFFER_SIZE];
 
 	switch (level)
 	{
@@ -48,7 +48,7 @@ void RDebug::systemPanic(const char* src_module, const char* fmt, ...)
 	va_list args;
 	__va_start(&args, fmt);
 
-	char msg[256];
+	char msg[BUFFER_SIZE];
 
 	vsprintf_s(msg, fmt, args);
 
@@ -76,7 +76,7 @@ void RDebug::systemAlert(UINT usr_level, MsgLevel level, const char* src_module,
 	va_list args;
 	__va_start(&args, fmt);
 
-	char msg[256];
+	char msg[BUFFER_SIZE];
 	UINT icon = MB_ICONASTERISK;
 
 	vsprintf_s(msg, fmt, args);

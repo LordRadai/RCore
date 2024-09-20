@@ -43,7 +43,7 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	va_list args;
 	__va_start(&args, fmt);
 
-	char msg[1000];
+	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
 	RDebug::debuggerOut(this->m_logLevel, level, msg);
@@ -57,7 +57,7 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 	va_list args;
 	__va_start(&args, fmt);
 
-	char msg[1000];
+	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
 	RDebug::systemAlert(this->m_logLevel, level, this->m_logName.c_str(), msg);
@@ -71,7 +71,7 @@ void RLog::panicMessage(const char* fmt, ...)
 	va_list args;
 	__va_start(&args, fmt);
 
-	char msg[1000];
+	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
 	RDebug::systemPanic(this->m_logName.c_str(), msg);
@@ -85,7 +85,7 @@ void RLog::addEntry(bool print_time, const char* fmt, ...)
 	va_list args;
 	__va_start(&args, fmt);
 
-	char msg[1000];
+	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
 	if (this->m_logFile)
