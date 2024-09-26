@@ -1,6 +1,7 @@
 #pragma once
 #include "TimeActEvent/TimeActEvent.h"
 #include "TAE3/TAE3.h"
+#include "TaeTemplate/TaeTemplate.h"
 
 namespace TimeAct
 {
