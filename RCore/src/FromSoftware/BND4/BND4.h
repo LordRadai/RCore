@@ -1,6 +1,7 @@
 #include <fstream>
 #include <vector>
-#include "RCore.h"
+#include <Windows.h>
+#include "RFile/RFile.h"
 
 namespace BND4
 {

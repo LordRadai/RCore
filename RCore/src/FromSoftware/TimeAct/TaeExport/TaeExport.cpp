@@ -1,7 +1,6 @@
 #include "TaeExport.h"
 #include "../TaeTemplate/TaeTemplate.h"
-#include "RCore.h"
-#include "extern.h"
+#include "RLog/RDebug/RDebug.h"
 
 namespace TimeAct
 {
@@ -288,7 +287,7 @@ namespace TimeAct
 
 			for (size_t i = 0; i < numArgs; i++)
 			{
-				TaeTemplate::Group::Event::Arg argTemplate = g_taeTemplate->getEvent(this->m_owner->getGroupId(), this->getEventId())->args[i];
+				TaeTemplate::Group::Event::Arg argTemplate = TaeTemplate::getInstance()->getEvent(this->m_owner->getGroupId(), this->getEventId())->args[i];
 
 				if (!argTemplate.hidden)
 				{
@@ -481,10 +480,7 @@ namespace TimeAct
 			TimeActTrackExportXML* trackExport = TimeActTrackExportXML::create(this, this->m_xmlElement, id, fps, numFrames);
 
 			if (trackExport == nullptr)
-			{
-				g_appLog->alertMessage(MsgLevel_Error, "A TimeActTrack with the specified ID already exists");
 				return nullptr;
-			}
 
 			this->m_tracks.push_back(trackExport);
 

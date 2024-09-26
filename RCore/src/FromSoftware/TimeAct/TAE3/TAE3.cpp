@@ -1,9 +1,7 @@
 #include <filesystem>
 #include <assert.h>
 #include "TAE3.h"
-#include "framework.h"
-#include "extern.h"
-#include "RCore.h"
+#include "RMemory/RMemory.h"
 
 namespace TimeAct
 {
