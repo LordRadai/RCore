@@ -62,9 +62,7 @@ namespace TimeAct
 			}
 		};
 
-		static TaeTemplate* getInstance();
-
-		void load(std::wstring filepath);
+		static TaeTemplate* load(std::wstring filepath);
 
 		std::vector<Group> groups;
 		TaeTemplateXML* sourceXML = nullptr;
@@ -77,7 +75,5 @@ namespace TimeAct
 
 	private:
 		TaeTemplate() {}
-
-		static TaeTemplate* _instance;
 	};
 }

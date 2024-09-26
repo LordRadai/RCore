@@ -277,7 +277,7 @@ namespace TimeAct
 			}
 		}
 
-		std::string TimeActEventExportXML::getArgumentsString()
+		std::string TimeActEventExportXML::getArgumentsString(TaeTemplate* taeTemplate)
 		{
 			const int numArgs = this->getNumArguments();
 
@@ -288,7 +288,7 @@ namespace TimeAct
 
 			for (size_t i = 0; i < numArgs; i++)
 			{
-				TaeTemplate::Group::Event::Arg argTemplate = TaeTemplate::getInstance()->getEvent(this->m_owner->getGroupId(), this->getEventId())->args[i];
+				TaeTemplate::Group::Event::Arg argTemplate = taeTemplate->getEvent(this->m_owner->getGroupId(), this->getEventId())->args[i];
 
 				if (!argTemplate.hidden)
 				{

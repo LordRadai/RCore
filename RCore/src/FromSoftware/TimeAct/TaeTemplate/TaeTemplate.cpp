@@ -2,19 +2,13 @@
 
 namespace TimeAct
 {
-	TaeTemplate* TaeTemplate::getInstance()
+	TaeTemplate* TaeTemplate::load(std::wstring filepath)
 	{
-		if (_instance == nullptr)
-			_instance = new TaeTemplate;
+		TaeTemplate* taeTemplate = new TaeTemplate;
 
-		return _instance;
-	}
-
-	void TaeTemplate::load(std::wstring filepath)
-	{
 		TaeTemplateXML* templateXML = TaeTemplateXML::loadFromFile(filepath);
 
-		this->_instance->sourceXML = templateXML;
+		taeTemplate->sourceXML = templateXML;
 
 		for (size_t groupIdx = 0; groupIdx < templateXML->getNumEventGroups(); groupIdx++)
 		{
@@ -49,8 +43,10 @@ namespace TimeAct
 				group.events.push_back(event);
 			}
 
-			this->_instance->groups.push_back(group);
+			taeTemplate->groups.push_back(group);
 		}
+
+		return taeTemplate;
 	}
 
 	TaeTemplate::Group* TaeTemplate::getGroup(int id)

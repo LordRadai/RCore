@@ -71,7 +71,7 @@ namespace TimeAct
 
 			int getNumArguments() const { return this->m_arguments.size(); }
 
-			std::string getArgumentsString();
+			std::string getArgumentsString(TaeTemplate* taeTemplate);
 
 			TimeActArgumentExportXML* addArgument(std::string name);
 			void deleteArgument(int idx);
