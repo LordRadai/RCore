@@ -154,6 +154,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="FromSoftware\BND4\BND4.h" />
+    <ClInclude Include="FromSoftware\CCM2\CCM2.h" />
+    <ClInclude Include="FromSoftware\CCM2\Glyph\Glyph.h" />
+    <ClInclude Include="FromSoftware\CCM2\TexRegion\TexRegion.h" />
+    <ClInclude Include="FromSoftware\TimeAct\TAE3\TAE3.h" />
+    <ClInclude Include="FromSoftware\TimeAct\TaeExport\TaeExport.h" />
+    <ClInclude Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.h" />
+    <ClInclude Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplateXML\TaeTemplateXML.h" />
+    <ClInclude Include="FromSoftware\TimeAct\TimeAct.h" />
+    <ClInclude Include="FromSoftware\TimeAct\TimeActEvent\TimeActEvent.h" />
+    <ClInclude Include="FromSoftware\TimeAct\TimeActEvent\TimeActEventData\TimeActEventData.h" />
     <ClInclude Include="RCore.h" />
     <ClInclude Include="RFile\RFile.h" />
     <ClInclude Include="RINI\mini\ini.h" />
@@ -170,6 +181,17 @@
     <ClInclude Include="RXML\tinyxml2\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FromSoftware\BND4\BND4.cpp" />
+    <ClCompile Include="FromSoftware\CCM2\CCM2.cpp" />
+    <ClCompile Include="FromSoftware\CCM2\Glyph\Glyph.cpp" />
+    <ClCompile Include="FromSoftware\CCM2\TexRegion\TexRegion.cpp" />
+    <ClCompile Include="FromSoftware\TimeAct\TAE3\TAE3.cpp" />
+    <ClCompile Include="FromSoftware\TimeAct\TaeExport\TaeExport.cpp" />
+    <ClCompile Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.cpp" />
+    <ClCompile Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplateXML\TaeTemplateXML.cpp" />
+    <ClCompile Include="FromSoftware\TimeAct\TimeAct.cpp" />
+    <ClCompile Include="FromSoftware\TimeAct\TimeActEvent\TimeActEvent.cpp" />
+    <ClCompile Include="FromSoftware\TimeAct\TimeActEvent\TimeActEventData\TimeActEventData.cpp" />
     <ClCompile Include="RFile\RFile.cpp" />
     <ClCompile Include="RINI\RINI.cpp" />
     <ClCompile Include="RInput\RController\RController.cpp" />

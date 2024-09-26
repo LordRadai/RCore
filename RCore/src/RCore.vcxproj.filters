@@ -57,6 +57,39 @@
     <ClInclude Include="RXML\RXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FromSoftware\BND4\BND4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\TimeAct\TAE3\TAE3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\TimeAct\TaeExport\TaeExport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplateXML\TaeTemplateXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\TimeAct\TimeActEvent\TimeActEventData\TimeActEventData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\TimeAct\TimeActEvent\TimeActEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\TimeAct\TimeAct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\CCM2\Glyph\Glyph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\CCM2\TexRegion\TexRegion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\CCM2\CCM2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">
@@ -93,6 +126,39 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RXML\RXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\BND4\BND4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\TimeAct\TAE3\TAE3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\TimeAct\TaeExport\TaeExport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplateXML\TaeTemplateXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\TimeAct\TimeActEvent\TimeActEventData\TimeActEventData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\TimeAct\TimeActEvent\TimeActEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\TimeAct\TimeAct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\CCM2\Glyph\Glyph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\CCM2\TexRegion\TexRegion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\CCM2\CCM2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

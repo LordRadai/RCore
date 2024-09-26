@@ -7,3 +7,5 @@
 #include "RMemory/RMemory.h"
 #include "RString/RString.h"
 #include "RXML/RXML.h"
+#include "Fromsoftware/TimeAct/TimeAct.h"
+#include "FromSoftware/BND4/BND4.h"
