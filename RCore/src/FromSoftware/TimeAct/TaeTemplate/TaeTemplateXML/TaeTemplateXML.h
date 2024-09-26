@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "RCore.h"
+#include "RFile/RFile.h"
+#include "RXML/RXML.h"
 
 namespace TimeAct
 {

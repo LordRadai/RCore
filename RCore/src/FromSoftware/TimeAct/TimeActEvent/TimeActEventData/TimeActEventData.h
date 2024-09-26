@@ -1,7 +1,7 @@
 #pragma once
 #include <Windows.h>
-#include "RCore.h"
 #include "../../TaeTemplate/TaeTemplate.h"
+#include "RMemory/RMemory.h"
 
 namespace TimeAct
 {

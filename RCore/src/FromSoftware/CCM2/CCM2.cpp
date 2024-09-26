@@ -84,10 +84,6 @@ namespace CCM2
 		pOut->write(this->m_bVar1F);
 	}
 
-	CCM2Reader::CCM2Reader()
-	{
-	}
-
 	CCM2Reader::CCM2Reader(PWSTR pwPath)
 	{
 		this->m_init = true;
@@ -108,19 +104,15 @@ namespace CCM2
 		this->m_texRegions.reserve(this->m_header.m_texRegionCount);
 
 		for (size_t i = 0; i < this->m_header.m_texRegionCount; i++)
-			this->m_texRegions.push_back(TexRegion(pFile));
+			this->m_texRegions.push_back(TexRegion(resource));
 
 		for (size_t i = 0; i < this->m_header.m_glyphCount; i++)
-			this->m_glyphs.push_back(Glyph(pFile));
+			this->m_glyphs.push_back(Glyph(resource));
 
 		this->m_fileSize = this->m_header.m_fileSize;
 
 		resource->close();
 		delete resource;
-	}
-
-	CCM2Reader::~CCM2Reader()
-	{
 	}
 
 	bool CCM2Reader::getInitStatus()
@@ -198,8 +190,6 @@ namespace CCM2
 			std::filesystem::copy_file(path, bak_path, std::filesystem::copy_options::overwrite_existing);
 		}
 
-		bool state = true;
-
 		RFile* ccm_out = RFile::create(RString::toWide(pwOutPath));
 
 		try
@@ -207,19 +197,22 @@ namespace CCM2
 			this->m_header.writeToFile(ccm_out);
 
 			for (size_t i = 0; i < this->m_header.m_texRegionCount; i++)
-				this->m_texRegions[i].WriteToFile(ccm_out);
+				this->m_texRegions[i].writeToFile(ccm_out);
 
 			for (size_t i = 0; i < this->m_header.m_glyphCount; i++)
-				this->m_glyphs[i].WriteToFile(ccm_out);
+				this->m_glyphs[i].writeToFile(ccm_out);
 		}
 		catch (const std::exception& e)
 		{
-			return;
+			ccm_out->close();
+			delete ccm_out;
+
+			return false;
 		}
 
 		ccm_out->close();
 		delete ccm_out;
 
-		return state;
+		return true;
 	}
 }

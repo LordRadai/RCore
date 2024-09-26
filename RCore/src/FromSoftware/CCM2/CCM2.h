@@ -51,9 +51,9 @@ namespace CCM2
 		std::vector<Glyph> m_glyphs;
 
 	public:
-		CCM2Reader();
+		CCM2Reader() {}
 		CCM2Reader(PWSTR pwPath);
-		~CCM2Reader();
+		~CCM2Reader() {}
 
 		bool getInitStatus();
 		int getTexRegionCount();

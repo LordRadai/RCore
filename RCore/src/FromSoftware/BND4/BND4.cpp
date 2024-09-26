@@ -1,6 +1,7 @@
 #include <assert.h>
 #include "BND4.h"
 #include <filesystem>
+#include "RMemory/RMemory.h"
 
 namespace BND4
 {

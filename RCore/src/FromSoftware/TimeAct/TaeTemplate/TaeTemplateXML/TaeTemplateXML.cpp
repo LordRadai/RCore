@@ -1,5 +1,6 @@
 #include "TaeTemplateXML.h"
-#include "RCore.h"
+#include "RXML/RXML.h"
+#include "RString/RString.h"
 
 namespace TimeAct
 {

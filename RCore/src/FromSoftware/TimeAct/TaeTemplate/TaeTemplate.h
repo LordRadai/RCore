@@ -78,6 +78,6 @@ namespace TimeAct
 	private:
 		TaeTemplate() {}
 
-		static TaeTemplate* _instance = nullptr;
+		static TaeTemplate* _instance;
 	};
 }

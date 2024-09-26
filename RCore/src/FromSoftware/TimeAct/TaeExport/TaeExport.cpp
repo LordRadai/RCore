@@ -1,6 +1,7 @@
 #include "TaeExport.h"
 #include "../TaeTemplate/TaeTemplate.h"
 #include "RLog/RDebug/RDebug.h"
+#include <algorithm>
 
 namespace TimeAct
 {

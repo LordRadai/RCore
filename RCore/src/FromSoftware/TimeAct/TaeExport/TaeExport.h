@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "RCore.h"
+#include "RXML/RXML.h"
 #include "../TimeAct.h"
 
 namespace TimeAct

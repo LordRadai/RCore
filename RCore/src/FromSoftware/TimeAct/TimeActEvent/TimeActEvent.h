@@ -1,5 +1,4 @@
 #include "../TimeActEvent/TimeActEventData/TimeActEventData.h"
-#include "RCore.h"
 #include "../TAE3/TAE3.h"
 
 namespace TimeAct

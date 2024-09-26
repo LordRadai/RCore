@@ -8,19 +8,19 @@ namespace CCM2
 	class Glyph
 	{
 	public:
-		int m_code;
-		int m_texRegionOffset;
-		short m_textureIndex;
-		short m_preSpace;
-		short m_width;
-		short m_advance;
-		int m_iVar10;
-		int m_iVar14;
+		int m_code = 0;
+		int m_texRegionOffset = 0;
+		short m_textureIndex = 0;
+		short m_preSpace = 0;
+		short m_width = 0;
+		short m_advance = 0;
+		int m_iVar10 = 0;
+		int m_iVar14 = 0;
 
-		Glyph();
+		Glyph() {}
 		Glyph(RFile* resource);
 		Glyph(WCHAR code, int idx, short textureIdx, short preSpace, short width, short advance);
-		~Glyph();
+		~Glyph() {}
 
 		bool writeToFile(RFile* pOut);
 	};
