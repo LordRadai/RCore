@@ -45,11 +45,37 @@ void RLog::setLogLevel(UINT level)
 
 void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 {
+	if ((level - 1) > this->m_logLevel)
+		return;
+
 	va_list args;
 	__va_start(&args, fmt);
+	std::string msg_level;
+	std::string msg_body;
+	std::string thread_id = std::to_string(GetCurrentThreadId());
 
 	char msg[BUFFER_SIZE];
-	vsprintf_s(msg, fmt, args);
+
+	switch (level)
+	{
+	case MsgLevel_Debug:
+		msg_level = "[DEBUG]";
+		break;
+	case MsgLevel_Info:
+		msg_level = "[INFO]";
+		break;
+	case MsgLevel_Warn:
+		msg_level = "[WARN]";
+		break;
+	case MsgLevel_Error:
+		msg_level = "[ERROR]";
+		break;
+	default:
+		break;
+	}
+
+	msg_body = fmt;
+	vsprintf_s(msg, ("(threadId=" + thread_id + ")" + " " + msg_level + " " + msg_body).c_str(), args);
 
 	RDebug::debuggerOut(this->m_logLevel, level, msg);
 
@@ -79,10 +105,10 @@ void RLog::panicMessage(const char* fmt, ...)
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
-	RDebug::systemPanic(this->m_logName.c_str(), msg);
-
 	if (this->m_logFile)
 		this->m_logFile->addLog(true, msg);
+
+	RDebug::systemPanic(this->m_logName.c_str(), msg);
 }
 
 void RLog::addEntry(bool print_time, const char* fmt, ...)
