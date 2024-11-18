@@ -225,9 +225,9 @@ namespace TimeAct
 			eventExport->m_owner = owner;
 			eventExport->m_xmlElement = parent->InsertNewChildElement("Event");
 
+			eventExport->m_xmlElement->SetAttribute("EventID", eventId);
 			eventExport->m_xmlElement->SetAttribute("startTime", startTime);
 			eventExport->m_xmlElement->SetAttribute("endTime", endTime);
-			eventExport->m_xmlElement->SetAttribute("EventID", eventId);
 
 			return eventExport;
 		}
