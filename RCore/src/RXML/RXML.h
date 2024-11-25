@@ -6,6 +6,8 @@
 
 namespace RXML
 {
+	tinyxml2::XMLElement* getUniqueElement(tinyxml2::XMLElement* parent, const char* name);
+
 	class XMLElemObj
 	{
 		friend class XMLFileObj;
@@ -15,7 +17,7 @@ namespace RXML
 		XMLElemObj* getChildElement(std::string name);
 		void addChildElement(std::string name);
 
-		void destroy();
+		virtual void destroy();
 	protected:
 		XMLElemObj() {}
 		~XMLElemObj() {}
@@ -44,7 +46,7 @@ namespace RXML
 		void addChildElement(std::string name);
 
 		bool save();
-		void destroy();
+		virtual void destroy();
 	protected:
 		XMLFileObj() {}
 		~XMLFileObj() {}

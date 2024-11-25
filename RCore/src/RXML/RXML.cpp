@@ -2,6 +2,16 @@
 
 namespace RXML
 {
+	tinyxml2::XMLElement* getUniqueElement(tinyxml2::XMLElement* parent, const char* name)
+	{
+		tinyxml2::XMLElement* result = parent->FirstChildElement(name);
+
+		if (result == nullptr)
+			result = parent->InsertNewChildElement(name);
+
+		return result;
+	}
+
 	XMLElemObj* XMLElemObj::create(tinyxml2::XMLElement* elem)
 	{
 		XMLElemObj* xmlElemObj = new XMLElemObj;
