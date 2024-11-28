@@ -20,6 +20,12 @@ namespace RXML
 		virtual void destroy();
 	protected:
 		XMLElemObj() {}
+
+		XMLElemObj(tinyxml2::XMLElement* elem) 
+		{
+			this->m_xmlElement = elem;
+		}
+
 		~XMLElemObj() {}
 
 		static XMLElemObj* create(tinyxml2::XMLElement* elem);
