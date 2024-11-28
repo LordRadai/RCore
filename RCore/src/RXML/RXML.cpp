@@ -75,6 +75,8 @@ namespace RXML
 		this->m_rootElement->destroy();
 		this->m_rootElement = XMLElemObj::create(this->m_xmlDoc->FirstChildElement());
 
+		this->setDstFileName(filename);
+
 		return true;
 	}
 
