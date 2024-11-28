@@ -72,6 +72,9 @@ namespace RXML
 		if (this->m_xmlDoc->LoadFile(filename) != tinyxml2::XML_SUCCESS)
 			return false;
 
+		this->m_rootElement->destroy();
+		this->m_rootElement = XMLElemObj::create(this->m_xmlDoc->FirstChildElement());
+
 		return true;
 	}
 

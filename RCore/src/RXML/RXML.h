@@ -36,7 +36,11 @@ namespace RXML
 		XMLFileObj() 
 		{
 			this->m_xmlDoc = new tinyxml2::XMLDocument;
-			this->m_rootElement = XMLElemObj::create(this->m_xmlDoc->FirstChildElement());
+
+			tinyxml2::XMLElement* root = this->m_xmlDoc->NewElement("");
+			this->m_xmlDoc->InsertEndChild(root);
+
+			this->m_rootElement = XMLElemObj::create(root);
 		}
 
 		XMLFileObj(const char* filename) : XMLFileObj()
