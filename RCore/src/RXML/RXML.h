@@ -33,8 +33,16 @@ namespace RXML
 	class XMLFileObj
 	{
 	public:
-		static XMLFileObj* create();
-		static XMLFileObj* create(const char* filename);
+		XMLFileObj() 
+		{
+			this->m_xmlDoc = new tinyxml2::XMLDocument;
+			this->m_rootElement = XMLElemObj::create(this->m_xmlDoc->FirstChildElement());
+		}
+
+		XMLFileObj(const char* filename) : XMLFileObj()
+		{
+			this->setDstFileName(filename);
+		}
 
 		std::string getDstFileName() const { return this->m_dstFileName; }
 		void setDstFileName(std::string filepath) { this->m_dstFileName = filepath; }
@@ -45,10 +53,10 @@ namespace RXML
 		XMLElemObj* getChildElement(std::string name) const { return this->m_rootElement; }
 		void addChildElement(std::string name);
 
-		bool save();
+		virtual bool save();
+		virtual bool load(const char* filename);
 		virtual void destroy();
 	protected:
-		XMLFileObj() {}
 		~XMLFileObj() {}
 
 		std::string m_dstFileName = "";

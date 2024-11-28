@@ -51,32 +51,6 @@ namespace RXML
 		delete this;
 	}
 
-	XMLFileObj* XMLFileObj::create()
-	{
-		XMLFileObj* xmlFileObj = new XMLFileObj;
-
-		xmlFileObj->m_xmlDoc = new tinyxml2::XMLDocument;
-
-		return xmlFileObj;
-	}
-
-	XMLFileObj* XMLFileObj::create(const char* filename)
-	{
-		XMLFileObj* xmlFileObj = new XMLFileObj;
-
-		tinyxml2::XMLDocument* xml = new tinyxml2::XMLDocument;
-		if (xml->LoadFile(filename) != tinyxml2::XML_SUCCESS)
-		{
-			delete xmlFileObj;
-			return nullptr;
-		}
-
-		xmlFileObj->m_xmlDoc = xml;
-		xmlFileObj->m_rootElement = XMLElemObj::create(xml->FirstChildElement());
-
-		return xmlFileObj;
-	}
-
 	void XMLFileObj::addChildElement(std::string name)
 	{
 		tinyxml2::XMLElement* element = this->m_xmlDoc->NewElement(name.c_str());
@@ -91,6 +65,14 @@ namespace RXML
 			return true;
 
 		return false;
+	}
+
+	bool XMLFileObj::load(const char* filename)
+	{
+		if (this->m_xmlDoc->LoadFile(filename) != tinyxml2::XML_SUCCESS)
+			return false;
+
+		return true;
 	}
 
 	void XMLFileObj::destroy()
