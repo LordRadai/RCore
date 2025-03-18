@@ -40,6 +40,8 @@ namespace BND4
 		bool isUnicode() const { return this->m_unicode; }
 		int getNumFiles() const { return this->m_fileCount; }
 		BndFile* getFile(int idx);
+		BndFile* getFileByName(std::string name);
+		BndFile* getFirstFileWithExtension(std::string extension);
 
 		void addFile(void* data, int fileSize, std::string name);
 

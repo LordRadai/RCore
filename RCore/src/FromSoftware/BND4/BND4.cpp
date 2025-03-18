@@ -145,6 +145,30 @@ namespace BND4
 		return nullptr;
 	}
 
+	BndFile* Bnd4::getFileByName(std::string name)
+	{
+		for (int i = 0; i < this->m_fileCount; i++)
+		{
+			if (this->m_files[i]->name.compare(name) == 0)
+				return this->m_files[i];
+		}
+
+		return nullptr;
+	}
+
+	BndFile* Bnd4::getFirstFileWithExtension(std::string extension)
+	{
+		for (int i = 0; i < this->m_fileCount; i++)
+		{
+			std::filesystem::path fileName = this->m_files[i]->name;
+
+			if (fileName.extension().compare(extension) == 0)
+				return this->m_files[i];
+		}
+
+		return nullptr;
+	}
+
 	void Bnd4::addFile(void* data, int fileSize, std::string name)
 	{
 		BndFile* newFile = BndFile::create(data, fileSize, name, this->m_fileCount);
