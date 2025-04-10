@@ -41,7 +41,7 @@ void RINI::write(bool pretty)
 
 bool RINI::getBool(std::string section, std::string key, bool vDefault)
 {
-	if (!this->m_data.has(section) || !this->m_data.get(section).has(key))
+	if (!doesEntryExist(section, key))
 		return vDefault;
 
 	std::string value = this->m_data.get(section).get(key);
@@ -54,7 +54,7 @@ bool RINI::getBool(std::string section, std::string key, bool vDefault)
 
 int RINI::getInt(std::string section, std::string key, int vDefault)
 {
-	if (!this->m_data.has(section) || !this->m_data.get(section).has(key))
+	if (!doesEntryExist(section, key))
 		return vDefault;
 
 	return std::stoi(this->m_data.get(section).get(key));
@@ -62,7 +62,7 @@ int RINI::getInt(std::string section, std::string key, int vDefault)
 
 float RINI::getFloat(std::string section, std::string key, float vDefault)
 {
-	if (!this->m_data.has(section) || !this->m_data.get(section).has(key))
+	if (!doesEntryExist(section, key))
 		return vDefault;
 
 	return std::stof(this->m_data.get(section).get(key));
@@ -70,7 +70,7 @@ float RINI::getFloat(std::string section, std::string key, float vDefault)
 
 std::string RINI::getString(std::string section, std::string key, std::string vDefault)
 {
-	if (!this->m_data.has(section) || !this->m_data.get(section).has(key))
+	if (!doesEntryExist(section, key))
 		return vDefault;
 
 	return this->m_data.get(section).get(key);
@@ -97,4 +97,12 @@ void RINI::setFloat(std::string section, std::string key, float value)
 void RINI::setString(std::string section, std::string key, std::string value)
 {
 	this->m_data[section][key] = value;
+}
+
+bool RINI::doesEntryExist(std::string section, std::string key)
+{
+	if (this->m_data.has(section) && this->m_data.get(section).has(key))
+		return true;
+
+	return false;
 }

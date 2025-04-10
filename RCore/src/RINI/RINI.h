@@ -31,6 +31,8 @@ private:
 	RINI() {}
 	~RINI() {}
 
+	bool doesEntryExist(std::string section, std::string key);
+
 	std::string m_path = "";
 	mINI::INIStructure m_data;
 };
