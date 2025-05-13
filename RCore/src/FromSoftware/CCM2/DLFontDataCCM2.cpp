@@ -42,6 +42,7 @@ DLFontDataCCM2* DLFontDataCCM2::loadFile(std::wstring path)
 		CCM2::CCM2* ccm2 = static_cast<CCM2::CCM2*>(buffer);
 
 		DLFontDataCCM2* fontData = new DLFontDataCCM2();
+
 		size_t fileSize = ccm2->getMemoryRequirements();
 
 		return timeAct;

@@ -155,9 +155,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="FromSoftware\BND4\BND4.h" />
-    <ClInclude Include="FromSoftware\CCM2\CCM2.h" />
-    <ClInclude Include="FromSoftware\CCM2\Glyph\Glyph.h" />
-    <ClInclude Include="FromSoftware\CCM2\TexRegion\TexRegion.h" />
+    <ClInclude Include="FromSoftware\CCM2\CCM2\CCM2.h" />
+    <ClInclude Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.h" />
+    <ClInclude Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.h" />
+    <ClInclude Include="FromSoftware\CCM2\DLFontDataCCM2.h" />
     <ClInclude Include="FromSoftware\TimeAct\TAE3\TAE3.h" />
     <ClInclude Include="FromSoftware\TimeAct\TaeExport\TaeExport.h" />
     <ClInclude Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.h" />
@@ -182,9 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FromSoftware\BND4\BND4.cpp" />
-    <ClCompile Include="FromSoftware\CCM2\CCM2.cpp" />
-    <ClCompile Include="FromSoftware\CCM2\Glyph\Glyph.cpp" />
-    <ClCompile Include="FromSoftware\CCM2\TexRegion\TexRegion.cpp" />
+    <ClCompile Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.cpp" />
+    <ClCompile Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.cpp" />
+    <ClCompile Include="FromSoftware\CCM2\DLFontDataCCM2.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TAE3\TAE3.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TaeExport\TaeExport.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.cpp" />
