@@ -93,9 +93,6 @@
     <ClInclude Include="FromSoftware\CCM2\CCM2\CCM2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CLIArgParser\CLIArgParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">
@@ -168,9 +165,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FromSoftware\CCM2\CCM2\CCM2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CLIArgParser\CLIArgParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

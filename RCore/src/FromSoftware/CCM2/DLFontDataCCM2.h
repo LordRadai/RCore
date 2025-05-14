@@ -67,14 +67,14 @@ private:
 class DLFontDataCCM2
 {
 public:
-	static DLFontDataCCM2* create(int font_size, int texture_size, int textureCount);
+	static DLFontDataCCM2* create(int font_size, int texture_size);
 	static DLFontDataCCM2* loadFile(std::wstring path);
 
 	void destroy();
 
 	bool getInitStatus() const { return this->m_init; }
 
-	int getGlyphCount() const { return this->m_glyphs.size(); }
+	int getNumGlyphs() const { return this->m_glyphs.size(); }
 	Glyph* getGlyph(int idx);
 
 	int getFontHeight() const { return this->m_fontHeight; }
@@ -85,7 +85,8 @@ public:
 	std::wstring getFilePath() const { return this->m_filePath; }
 	size_t getFileSize() const { return this->m_fileSize; }
 
-	void addTexRegion(TexRegion* texRegion);
+	void setNumTextures(int count) { this->m_numTextures = count; }
+
 	void addGlyph(Glyph* glyph);
 
 	bool save(std::wstring path);

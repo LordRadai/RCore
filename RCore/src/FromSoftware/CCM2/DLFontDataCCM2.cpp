@@ -141,7 +141,7 @@ void DLFontDataCCM2::addGlyph(Glyph* glyph)
 	this->m_glyphs.push_back(glyph);
 }
 
-DLFontDataCCM2* DLFontDataCCM2::create(int font_size, int texture_size, int textureCount)
+DLFontDataCCM2* DLFontDataCCM2::create(int font_size, int texture_size)
 {
 	DLFontDataCCM2* ccm2 = new DLFontDataCCM2();
 
@@ -149,7 +149,7 @@ DLFontDataCCM2* DLFontDataCCM2::create(int font_size, int texture_size, int text
 	ccm2->m_fontHeight = font_size;
 	ccm2->m_textureWidth = texture_size;
 	ccm2->m_textureHeight = texture_size;
-	ccm2->m_numTextures = textureCount;
+	ccm2->m_numTextures = 0;
 
 	return ccm2;
 }

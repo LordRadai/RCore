@@ -45,13 +45,19 @@ size_t RFile::getFileSize(std::wstring fileName)
 	return size;
 }
 
-size_t RFile::allocAndLoad(std::wstring fileName, void** buffer, UINT64* bufferSize, UINT alignment)
+size_t RFile::allocAndLoad(std::wstring fileName, void** buffer, size_t* bufferSize, UINT alignment)
 {
 	std::ifstream file;
 
 	file.open(fileName, std::ios::binary | std::ios::in);
 
-	UINT64 size = getFileSize(fileName);
+	if (!file.is_open())
+	{
+		*bufferSize = -1;
+		return -1;
+	}
+
+	size_t size = getFileSize(fileName);
 
 	*bufferSize = RMemory::align(size, alignment);
 

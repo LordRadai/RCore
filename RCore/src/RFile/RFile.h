@@ -20,7 +20,7 @@ public:
 	void close();
 
 	static size_t getFileSize(std::wstring fileName);
-	static size_t allocAndLoad(std::wstring fileName, void** buffer, UINT64* bufferSize, UINT alignment = 16);
+	static size_t allocAndLoad(std::wstring fileName, void** buffer, size_t* bufferSize, UINT alignment = 16);
 
 	template <typename T> void read(T* pBuf)
 	{
