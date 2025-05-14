@@ -202,7 +202,7 @@ CCM2::CCM2 DLFontDataCCM2::generateBinary(RFile* file)
 {
 	CCM2::CCM2 ccm2;
 	ccm2.format = 0x20000;
-	ccm2.fileSize = this->m_fileSize;
+	ccm2.fileSize = this->getMemoryRequirements();
 	ccm2.fontHeight = this->m_fontHeight;
 	ccm2.textureWidth = this->m_textureWidth;
 	ccm2.textureHeight = this->m_textureHeight;
@@ -227,6 +227,9 @@ CCM2::CCM2 DLFontDataCCM2::generateBinary(RFile* file)
 
 	for (size_t i = 0; i < this->m_glyphs.size(); i++)
 		this->m_glyphs[i]->generateBinary(file, i);
+
+	pos = file->tell();
+	assert(pos == ccm2.fileSize);
 
 	return ccm2;
 }
