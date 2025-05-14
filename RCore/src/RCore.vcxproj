@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CLIArgParser\CLIArgParser.h" />
     <ClInclude Include="FromSoftware\BND4\BND4.h" />
     <ClInclude Include="FromSoftware\CCM2\CCM2\CCM2.h" />
     <ClInclude Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="RXML\tinyxml2\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CLIArgParser\CLIArgParser.cpp" />
     <ClCompile Include="FromSoftware\BND4\BND4.cpp" />
     <ClCompile Include="FromSoftware\CCM2\CCM2\CCM2.cpp" />
     <ClCompile Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.cpp" />
