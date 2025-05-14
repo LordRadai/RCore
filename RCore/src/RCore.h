@@ -9,4 +9,4 @@
 #include "RXML/RXML.h"
 #include "Fromsoftware/TimeAct/TimeAct.h"
 #include "FromSoftware/BND4/BND4.h"
-#include "FromSoftware/CCM2/CCM2.h"
+#include "FromSoftware/CCM2/DLFontDataCCM2.h"

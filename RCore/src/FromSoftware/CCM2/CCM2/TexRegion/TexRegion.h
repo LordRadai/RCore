@@ -11,9 +11,6 @@ namespace CCM2
 		short x2 = 0;
 		short y2 = 0;
 
-		TexRegion() {}
-		TexRegion(RFile* resource);
-		TexRegion(short x1, short y1, short x2, short y2);
-		~TexRegion() {}
+		void locate(char* ptr);
 	};
 }

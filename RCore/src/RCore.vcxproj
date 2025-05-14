@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FromSoftware\BND4\BND4.cpp" />
+    <ClCompile Include="FromSoftware\CCM2\CCM2\CCM2.cpp" />
     <ClCompile Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.cpp" />
     <ClCompile Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.cpp" />
     <ClCompile Include="FromSoftware\CCM2\DLFontDataCCM2.cpp" />
@@ -212,12 +213,12 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\directxtk_uwp.2024.6.5.1\build\native\directxtk_uwp.targets" Condition="Exists('..\packages\directxtk_uwp.2024.6.5.1\build\native\directxtk_uwp.targets')" />
-    <Import Project="..\..\..\packages\directxtk_uwp.2024.10.29.1\build\native\directxtk_uwp.targets" Condition="Exists('..\..\..\packages\directxtk_uwp.2024.10.29.1\build\native\directxtk_uwp.targets')" />
+    <Import Project="..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets" Condition="Exists('..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\directxtk_uwp.2024.10.29.1\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\directxtk_uwp.2024.10.29.1\build\native\directxtk_uwp.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets'))" />
   </Target>
 </Project>

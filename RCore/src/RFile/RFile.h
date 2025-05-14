@@ -19,8 +19,8 @@ public:
 	static RFile* create(std::wstring fileName);
 	void close();
 
-	static UINT64 getFileSize(std::wstring fileName);
-	static UINT64 allocAndLoad(std::wstring fileName, void** buffer, UINT64* bufferSize, UINT alignment = 16);
+	static size_t getFileSize(std::wstring fileName);
+	static size_t allocAndLoad(std::wstring fileName, void** buffer, UINT64* bufferSize, UINT alignment = 16);
 
 	template <typename T> void read(T* pBuf)
 	{
@@ -66,7 +66,7 @@ public:
 	void alignStream(UINT64 alignment);
 
 	void seek(ptrdiff_t pos);
-	UINT64 tell();
+	ptrdiff_t tell();
 
 private:
 	std::fstream m_file;

@@ -34,7 +34,7 @@ void RFile::close()
 	this->m_file.close();
 }
 
-UINT64 RFile::getFileSize(std::wstring fileName)
+size_t RFile::getFileSize(std::wstring fileName)
 {
 	std::ifstream file;
 	file.open(fileName, std::ios::binary | std::ios::ate);
@@ -45,7 +45,7 @@ UINT64 RFile::getFileSize(std::wstring fileName)
 	return size;
 }
 
-UINT64 RFile::allocAndLoad(std::wstring fileName, void** buffer, UINT64* bufferSize, UINT alignment)
+size_t RFile::allocAndLoad(std::wstring fileName, void** buffer, UINT64* bufferSize, UINT alignment)
 {
 	std::ifstream file;
 
@@ -53,7 +53,7 @@ UINT64 RFile::allocAndLoad(std::wstring fileName, void** buffer, UINT64* bufferS
 
 	UINT64 size = getFileSize(fileName);
 
-	*bufferSize = RMemory::align(size, 16);
+	*bufferSize = RMemory::align(size, alignment);
 
 	*buffer = new char[*bufferSize];
 
@@ -88,10 +88,10 @@ void RFile::seek(ptrdiff_t pos)
 	this->m_file.seekg(pos);
 }
 
-UINT64 RFile::tell()
+ptrdiff_t RFile::tell()
 {
-	UINT64 tellg = this->m_file.tellg();
-	UINT64 tellp = this->m_file.tellp();
+	ptrdiff_t tellg = this->m_file.tellg();
+	ptrdiff_t tellp = this->m_file.tellp();
 
 	if (tellg == 0)
 		return tellp;

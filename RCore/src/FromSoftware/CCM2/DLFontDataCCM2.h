@@ -6,11 +6,21 @@
 
 class TexRegion
 {
+	friend class DLFontDataCCM2;
+	friend class Glyph;
+
 public:
 	static TexRegion* create(short x1, short y1, short x2, short y2);
 	static TexRegion* createFromResource(CCM2::TexRegion* resource);
 
-private:
+	void destroy();
+
+	int getX1() const { return this->m_x1; }
+	int getY1() const { return this->m_y1; }
+	int getX2() const { return this->m_x2; }
+	int getY2() const { return this->m_y2; }
+
+protected:
 	TexRegion() {}
 	~TexRegion() {}
 
@@ -25,12 +35,15 @@ private:
 
 class Glyph
 {
+	friend class DLFontDataCCM2;
+
 public:
-	static Glyph* create(int code, int idx, short textureIdx, short preSpace, short width, short advance);
-	static Glyph* createFromResource(CCM2::Glyph* resource);
+	static Glyph* create(int code, int idx, short textureIdx, short preSpace, short width, short advance, TexRegion* pTexRegion);
+	static Glyph* createFromResource(CCM2::Glyph* resource, char* ptr);
+
+	void destroy();
 
 	int getCode() const { return this->m_code; }
-	int getTexRegionOffset() const { return this->m_texRegionOffset; }
 	short getTextureIndex() const { return this->m_textureIndex; }
 	short getPreSpace() const { return this->m_preSpace; }
 	short getWidth() const { return this->m_width; }
@@ -41,16 +54,14 @@ private:
 	~Glyph() {}
 
 	int getMemoryRequirements();
-	CCM2::Glyph generateBinary(RFile* file);
+	CCM2::Glyph generateBinary(RFile* file, int glyphIdx);
 
 	int m_code = 0;
-	int m_texRegionOffset = 0;
+	TexRegion* m_texRegion = nullptr;
 	short m_textureIndex = 0;
 	short m_preSpace = 0;
 	short m_width = 0;
 	short m_advance = 0;
-
-	TexRegion* m_texRegion = nullptr;
 };
 
 class DLFontDataCCM2
@@ -59,14 +70,25 @@ public:
 	static DLFontDataCCM2* create(int font_size, int texture_size, int textureCount);
 	static DLFontDataCCM2* loadFile(std::wstring path);
 
+	void destroy();
+
 	bool getInitStatus() const { return this->m_init; }
 
 	int getGlyphCount() const { return this->m_glyphs.size(); }
 	Glyph* getGlyph(int idx);
 
-	void addGlyph(Glyph glyph);
+	int getFontHeight() const { return this->m_fontHeight; }
+	int getTextureWidth() const { return this->m_textureWidth; }
+	int getTextureHeight() const { return this->m_textureHeight; }
+	int getNumTextures() const { return this->m_numTextures; }
+	std::wstring getFileName() const { return this->m_fileName; }
+	std::wstring getFilePath() const { return this->m_filePath; }
+	size_t getFileSize() const { return this->m_fileSize; }
 
-	bool save(std::string path);
+	void addTexRegion(TexRegion* texRegion);
+	void addGlyph(Glyph* glyph);
+
+	bool save(std::wstring path);
 
 protected:
 	DLFontDataCCM2() {}
@@ -75,9 +97,9 @@ protected:
 	int getMemoryRequirements();
 	CCM2::CCM2 generateBinary(RFile* file);
 
-	std::wstring m_fileName;
-	std::wstring m_filePath;
-	size_t m_fileSize;
+	std::wstring m_fileName = L"";
+	std::wstring m_filePath = L"";
+	size_t m_fileSize = 0;
 	bool m_init = false;
 
 	int m_fontHeight = 0;
@@ -85,6 +107,5 @@ protected:
 	int m_textureHeight = 0;
 	int m_numTextures = 0;
 
-	std::vector<TexRegion*> m_texRegions;
 	std::vector<Glyph*> m_glyphs;
 };
