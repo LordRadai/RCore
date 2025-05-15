@@ -1,7 +1,7 @@
 #include "RFile.h"
 #include "RMemory/RMemory.h"
 
-RFile* RFile::open(std::wstring fileName, FileMode mode)
+RFile* RFile::open(std::wstring fileName, int mode)
 {
 	RFile* file = new RFile;
 

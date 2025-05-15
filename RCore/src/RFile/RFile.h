@@ -15,7 +15,7 @@ public:
 	RFile() {}
 	~RFile() {}
 
-	static RFile* open(std::wstring fileName, FileMode mode);
+	static RFile* open(std::wstring fileName, int mode);
 	static RFile* create(std::wstring fileName);
 	void close();
 
