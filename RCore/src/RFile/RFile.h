@@ -70,5 +70,5 @@ public:
 
 private:
 	std::fstream m_file;
-	FileMode m_mode = kFileModeNone;
+	int m_mode = kFileModeNone;
 };
