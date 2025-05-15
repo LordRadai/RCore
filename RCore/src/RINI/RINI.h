@@ -17,6 +17,9 @@ public:
 
 	void write(bool pretty = true);
 
+	bool hasValue(std::string section, std::string key);
+	bool hasSection(std::string section);
+
 	bool getBool(std::string section, std::string key, bool vDefault);
 	int getInt(std::string section, std::string key, int vDefault);
 	float getFloat(std::string section, std::string key, float vDefault);

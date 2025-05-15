@@ -39,6 +39,22 @@ void RINI::write(bool pretty)
 	file.generate(this->m_data, pretty);
 }
 
+bool RINI::hasValue(std::string section, std::string key)
+{
+	if (this->m_data.has(section) && this->m_data.get(section).has(key))
+		return true;
+
+	return false;
+}
+
+bool RINI::hasSection(std::string section)
+{
+	if (this->m_data.has(section))
+		return true;
+
+	return false;
+}
+
 bool RINI::getBool(std::string section, std::string key, bool vDefault)
 {
 	if (!doesEntryExist(section, key))

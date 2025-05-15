@@ -4,6 +4,20 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
+DirectX::XMMATRIX RMath::getRotationMatrixFromLookAtVector(DirectX::SimpleMath::Vector3 lookAt)
+{
+	Vector3 forward = lookAt;
+	Vector3 right = forward.Cross(Vector3::UnitY);
+	Vector3 up = forward.Cross(right);
+
+	forward.Normalize();
+	right.Normalize();
+	up.Normalize();
+
+	return Matrix(right, up, forward);
+}
+
+
 DirectX::XMMATRIX RMath::getRotationMatrixFromWorldMatrix(DirectX::XMMATRIX m_world)
 {
 	DirectX::XMMATRIX rotation = m_world;

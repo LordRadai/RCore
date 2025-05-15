@@ -24,6 +24,7 @@
 
 namespace RMath
 {
+	DirectX::XMMATRIX getRotationMatrixFromLookAtVector(DirectX::SimpleMath::Vector3 lookAt);
 	DirectX::XMMATRIX getRotationMatrixFromWorldMatrix(DirectX::XMMATRIX m_world);
 	DirectX::XMMATRIX getRotationFrom2Vectors(DirectX::SimpleMath::Vector3 pointA, DirectX::SimpleMath::Vector3 pointB);
 	DirectX::SimpleMath::Vector3 getYawPitchRollFromMatrix(DirectX::XMMATRIX m_world);
