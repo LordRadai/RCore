@@ -111,6 +111,11 @@ DirectX::SimpleMath::Vector4 RMath::getFloatColor(UINT color)
 	return colorVec;
 }
 
+DirectX::SimpleMath::Vector4 RMath::getFloatColor(BYTE* pColor)
+{
+	return getFloatColor(pColor[0], pColor[1], pColor[2], pColor[3]);
+}
+
 DirectX::SimpleMath::Vector4 RMath::getFloatColor(BYTE r, BYTE g, BYTE b, BYTE a)
 {
 	Vector4 colorVec;

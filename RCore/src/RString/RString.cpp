@@ -1,4 +1,5 @@
 #include "RString.h"
+#include <stringapiset.h>
 
 std::string RString::replace(std::string str, std::string substr, std::string replacement)
 {
@@ -23,4 +24,17 @@ std::string RString::guidToString(GUID guid)
 		guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
 
 	return std::string(guid_cstr);
+}
+
+std::wstring RString::shiftJisToWide(const char* str)
+{
+	int len = MultiByteToWideChar(932, 0, str, -1, NULL, 0);
+	std::wstring wstr(len, L'\0');
+	MultiByteToWideChar(932, 0, str, -1, &wstr[0], len);
+
+	// Remove the null terminator
+	if (!wstr.empty() && wstr.back() == L'\0')
+		wstr.pop_back();
+
+	return wstr;
 }

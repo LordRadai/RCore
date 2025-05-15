@@ -33,6 +33,7 @@ namespace RMath
 	float degToRad(float angle);
 	float radToDeg(float angle);
 
+	DirectX::SimpleMath::Vector4 getFloatColor(BYTE* pColor);
 	DirectX::SimpleMath::Vector4 getFloatColor(BYTE r, BYTE g, BYTE b, BYTE a);
 	DirectX::SimpleMath::Vector4 getFloatColor(UINT color);
 
