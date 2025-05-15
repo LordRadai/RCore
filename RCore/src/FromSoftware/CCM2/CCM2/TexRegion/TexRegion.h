@@ -2,15 +2,18 @@
 #include <fstream>
 #include "RFile/RFile.h"
 
-namespace CCM2
+namespace DLFontData
 {
-	struct TexRegion
+	namespace CCM2
 	{
-		short x1 = 0;
-		short y1 = 0;
-		short x2 = 0;
-		short y2 = 0;
+		struct TexRegion
+		{
+			short x1 = 0;
+			short y1 = 0;
+			short x2 = 0;
+			short y2 = 0;
 
-		void locate(char* ptr);
-	};
+			void locate(char* ptr);
+		};
+	}
 }

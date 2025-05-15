@@ -1,6 +1,9 @@
 #include "TexRegion.h"
 
-namespace CCM2
+namespace DLFontData
 {
-	void TexRegion::locate(char* ptr) {}
+	namespace CCM2
+	{
+		void TexRegion::locate(char* ptr) {}
+	}
 }

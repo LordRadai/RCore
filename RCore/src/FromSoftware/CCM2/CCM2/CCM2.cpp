@@ -1,9 +1,12 @@
 #include "CCM2.h"
 #include "RMemory/RMemory.h"
 
-namespace CCM2
+namespace DLFontData
 {
-	void CCM2::locate()
+	namespace CCM2
 	{
-	};
+		void CCM2::locate()
+		{
+		};
+	}
 }

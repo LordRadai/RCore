@@ -2,23 +2,26 @@
 #include "TexRegion/TexRegion.h"
 #include "Glyph/Glyph.h"
 
-namespace CCM2
+namespace DLFontData
 {
-	struct CCM2
+	namespace CCM2
 	{
-		UINT format;
-		UINT fileSize;
-		USHORT fontHeight;
-		USHORT textureWidth;
-		USHORT textureHeight;
-		USHORT texRegionCount;
-		USHORT glyphCount;
-		BYTE pad[2];
-		UINT texRegionOffset;
-		UINT glyphOffset;
-		USHORT alignment;
-		USHORT textureCount;
+		struct CCM2
+		{
+			UINT format;
+			UINT fileSize;
+			USHORT fontHeight;
+			USHORT textureWidth;
+			USHORT textureHeight;
+			USHORT texRegionCount;
+			USHORT glyphCount;
+			BYTE pad[2];
+			UINT texRegionOffset;
+			UINT glyphOffset;
+			USHORT alignment;
+			USHORT textureCount;
 
-		void locate();
-	};
+			void locate();
+		};
+	}
 }
