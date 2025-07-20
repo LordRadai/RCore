@@ -22,6 +22,8 @@ public:
 	static size_t getFileSize(std::wstring fileName);
 	static size_t allocAndLoad(std::wstring fileName, void** buffer, size_t* bufferSize, UINT alignment = 16);
 
+	bool isOpen() const { return this->m_file.is_open(); }
+
 	template <typename T> void read(T* pBuf)
 	{
 		this->m_file.read((char*)pBuf, sizeof(T));
