@@ -15,7 +15,7 @@ public:
 	std::string getLogPath();
 
 	bool createLogFile();
-	bool addLog(bool print_time, const char* fmt, ...);
+	bool addLog(const char* fmt, ...);
 
 private:
 	bool m_init;

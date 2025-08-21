@@ -203,7 +203,7 @@ void RConsole::threadMain(std::wstring title)
     }
 }
 
-void RConsole::log(const wchar_t* fmt, ...)
+void RConsole::addLog(const wchar_t* fmt, ...)
 {
     wchar_t buffer[1024];
     va_list args;

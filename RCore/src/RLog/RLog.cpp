@@ -1,4 +1,24 @@
+#include <time.h>
+#include <sstream>
 #include "RLog.h"
+
+inline std::string getCurrentDateTime(std::string format)
+{
+	time_t now = time(0);
+	struct tm tstruct = *localtime(&now);
+	char  buf[80];
+
+	if (format.compare("now") == 0)
+		strftime(buf, sizeof(buf), "%d-%m-%Y %X", &tstruct);
+	else if (format.compare("date") == 0)
+		strftime(buf, sizeof(buf), "%d-%m-%Y", &tstruct);
+	else if (format.compare("time") == 0)
+		strftime(buf, sizeof(buf), "%X", &tstruct);
+	else
+		RDebug::debuggerOut(MsgLevel_Error, MsgLevel_Error, "Invalid format type %s\n", format);
+
+	return std::string(buf);
+};
 
 RLog::RLog()
 {
@@ -79,13 +99,20 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	msg_body = fmt;
 	vsprintf_s(msg, ("(threadId=" + thread_id + ")" + " " + msg_level + " " + msg_body).c_str(), args);
 
-	RDebug::debuggerOut(this->m_logLevel, level, msg);
+	std::string now = "[" + getCurrentDateTime("now") + "]";
+
+	std::stringstream ss;
+	ss << now << '\t' << msg;
+
+	const char* msg_ptr = ss.str().c_str();
+
+	RDebug::debuggerOut(this->m_logLevel, level, msg_ptr);
 
 	if (this->m_logFile)
-		this->m_logFile->addLog(true, msg);
+		this->m_logFile->addLog(msg_ptr);
 
 	if (this->m_console)
-		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
+		this->m_console->addLog(std::wstring(msg_ptr, msg_ptr + strlen(msg_ptr)).c_str());
 }
 
 void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
@@ -96,13 +123,20 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
-	RDebug::systemAlert(this->m_logLevel, level, this->m_logName.c_str(), msg);
+	std::string now = "[" + getCurrentDateTime("now") + "]";
+
+	std::stringstream ss;
+	ss << now << '\t' << msg;
+
+	const char* msg_ptr = ss.str().c_str();
+
+	RDebug::systemAlert(this->m_logLevel, level, this->m_logName.c_str(), msg_ptr);
 
 	if (this->m_logFile)
-		this->m_logFile->addLog(true, msg);
+		this->m_logFile->addLog(msg_ptr);
 
 	if (this->m_console)
-		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
+		this->m_console->addLog(std::wstring(msg_ptr, msg_ptr + strlen(msg_ptr)).c_str());
 }
 
 void RLog::panicMessage(const char* fmt, ...)
@@ -113,13 +147,20 @@ void RLog::panicMessage(const char* fmt, ...)
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
+	std::string now = "[" + getCurrentDateTime("now") + "]";
+
+	std::stringstream ss;
+	ss << now << '\t' << msg;
+
+	const char* msg_ptr = ss.str().c_str();
+
 	if (this->m_logFile)
-		this->m_logFile->addLog(true, msg);
+		this->m_logFile->addLog(msg_ptr);
 
 	if (this->m_console)
-		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
+		this->m_console->addLog(std::wstring(msg_ptr, msg_ptr + strlen(msg_ptr)).c_str());
 
-	RDebug::systemPanic(this->m_logName.c_str(), msg);
+	RDebug::systemPanic(this->m_logName.c_str(), msg_ptr);
 }
 
 void RLog::addEntry(bool print_time, const char* fmt, ...)
@@ -131,8 +172,8 @@ void RLog::addEntry(bool print_time, const char* fmt, ...)
 	vsprintf_s(msg, fmt, args);
 
 	if (this->m_logFile)
-		this->m_logFile->addLog(true, fmt, args);
+		this->m_logFile->addLog(fmt, args);
 
 	if (this->m_console)
-		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
+		this->m_console->addLog(std::wstring(msg, msg + strlen(msg)).c_str());
 }

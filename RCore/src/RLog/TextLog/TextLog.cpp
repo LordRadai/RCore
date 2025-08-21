@@ -1,27 +1,8 @@
-#include <time.h>
 #include <fstream>
 #include <ostream>
 #include <filesystem>
 #include "TextLog.h"
 #include "../RDebug/RDebug.h"
-
-inline std::string getCurrentDateTime(std::string format) 
-{
-    time_t now = time(0);
-    struct tm tstruct = *localtime(&now);
-    char  buf[80];
-
-    if (format.compare("now") == 0)
-        strftime(buf, sizeof(buf), "%d-%m-%Y %X", &tstruct);
-    else if (format.compare("date") == 0)
-        strftime(buf, sizeof(buf), "%d-%m-%Y", &tstruct);
-    else if (format.compare("time") == 0)
-        strftime(buf, sizeof(buf), "%X", &tstruct);
-    else
-        RDebug::debuggerOut(MsgLevel_Error, MsgLevel_Error, "Invalid format type %s\n", format);
-
-    return std::string(buf);
-};
 
 TextLog::TextLog()
 {
@@ -80,7 +61,7 @@ bool TextLog::createLogFile()
     return true;
 }
 
-bool TextLog::addLog(bool print_time, const char* fmt, ...)
+bool TextLog::addLog(const char* fmt, ...)
 {
     if (!this->m_init)
         return false;
@@ -95,12 +76,6 @@ bool TextLog::addLog(bool print_time, const char* fmt, ...)
 	vsprintf_s(msg_buf, msg.c_str(), args);
 
     std::string filePath = this->m_outPath;
-    std::string now = "[" + getCurrentDateTime("now") + "]";
-
-    if (print_time)
-        this->m_ofstream << now << '\t' << msg_buf;
-    else
-        this->m_ofstream << msg_buf;
 
     this->m_ofstream.flush();
 

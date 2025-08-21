@@ -18,7 +18,7 @@ public:
     RConsole(const std::wstring& name);
     ~RConsole();
 
-    void log(const wchar_t* fmt, ...);
+    void addLog(const wchar_t* fmt, ...);
 
     void setVisibility(bool visible);
 
