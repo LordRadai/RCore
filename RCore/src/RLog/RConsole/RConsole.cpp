@@ -147,7 +147,7 @@ void RConsole::threadMain(std::wstring title)
     m_hwnd = CreateWindowExW(
         0, L"AppLogWindow", title.c_str(),
         WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-        CW_USEDEFAULT, CW_USEDEFAULT, 960, 540,
+        CW_USEDEFAULT, CW_USEDEFAULT, 640, 400,
         nullptr, nullptr, hInstance, nullptr);
 
     if (!m_hwnd) return;
