@@ -171,9 +171,16 @@ void RLog::addEntry(bool print_time, const char* fmt, ...)
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
+	std::string now = "[" + getCurrentDateTime("now") + "]";
+
+	std::stringstream ss;
+	ss << now << '\t' << msg;
+
+	const char* msg_ptr = ss.str().c_str();
+
 	if (this->m_logFile)
-		this->m_logFile->addLog(fmt, args);
+		this->m_logFile->addLog(msg_ptr);
 
 	if (this->m_console)
-		this->m_console->addLog(std::wstring(msg, msg + strlen(msg)).c_str());
+		this->m_console->addLog(std::wstring(msg_ptr, msg_ptr + strlen(msg_ptr)).c_str());
 }
