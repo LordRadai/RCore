@@ -188,7 +188,7 @@ void RConsole::threadMain(std::wstring title)
         CLIP_DEFAULT_PRECIS,
         CLEARTYPE_QUALITY,
         FIXED_PITCH | FF_MODERN,
-        L"MS UI Gothic");
+        L"MS Gothic");
 
     m_hEditFont = CreateFontW(
         14, 0, 0, 0,
