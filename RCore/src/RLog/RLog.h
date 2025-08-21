@@ -1,5 +1,5 @@
 #pragma once
-
+#include "RConsole/RConsole.h"
 #include "RDebug/RDebug.h"
 #include "TextLog/TextLog.h"
 
@@ -21,10 +21,11 @@ public:
 	void panicMessage(const char* fmt, ...);
 
 	void addEntry(bool print_time, const char* fmt, ...);
-
+	void setConsoleVisibility(bool bVisible) { this->m_console->setVisibility(bVisible); };
 private:
 	UINT m_logLevel;
 	TextLog* m_logFile;
+	RConsole* m_console;
 	std::string m_logPath;
 	std::string m_logName;
 };

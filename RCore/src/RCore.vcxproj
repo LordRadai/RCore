@@ -172,6 +172,7 @@
     <ClInclude Include="RINI\RINI.h" />
     <ClInclude Include="RInput\RController\RController.h" />
     <ClInclude Include="RInput\RInput.h" />
+    <ClInclude Include="RLog\RConsole\RConsole.h" />
     <ClInclude Include="RLog\RDebug\RDebug.h" />
     <ClInclude Include="RLog\RLog.h" />
     <ClInclude Include="RLog\TextLog\TextLog.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="RINI\RINI.cpp" />
     <ClCompile Include="RInput\RController\RController.cpp" />
     <ClCompile Include="RInput\RInput.cpp" />
+    <ClCompile Include="RLog\RConsole\RConsole.cpp" />
     <ClCompile Include="RLog\RDebug\RDebug.cpp" />
     <ClCompile Include="RLog\RLog.cpp" />
     <ClCompile Include="RLog\TextLog\TextLog.cpp" />

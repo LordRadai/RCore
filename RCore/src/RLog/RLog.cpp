@@ -4,6 +4,7 @@ RLog::RLog()
 {
 	this->m_logLevel = MsgLevel_Debug;
 	this->m_logFile = new TextLog();
+	this->m_console = new RConsole();
 	this->m_logPath = "";
 }
 
@@ -11,6 +12,7 @@ RLog::RLog(MsgLevel level, std::string path, std::string log_name)
 {
 	this->m_logLevel = level;
 	this->m_logFile = new TextLog(path);
+	this->m_console = new RConsole(std::wstring(log_name.begin(), log_name.end()));
 	this->m_logName = log_name;
 
 	this->m_logPath = path;
@@ -81,6 +83,9 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 
 	if (this->m_logFile)
 		this->m_logFile->addLog(true, msg);
+
+	if (this->m_console)
+		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
 }
 
 void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
@@ -95,6 +100,9 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 
 	if (this->m_logFile)
 		this->m_logFile->addLog(true, msg);
+
+	if (this->m_console)
+		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
 }
 
 void RLog::panicMessage(const char* fmt, ...)
@@ -107,6 +115,9 @@ void RLog::panicMessage(const char* fmt, ...)
 
 	if (this->m_logFile)
 		this->m_logFile->addLog(true, msg);
+
+	if (this->m_console)
+		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
 
 	RDebug::systemPanic(this->m_logName.c_str(), msg);
 }
@@ -121,6 +132,7 @@ void RLog::addEntry(bool print_time, const char* fmt, ...)
 
 	if (this->m_logFile)
 		this->m_logFile->addLog(true, fmt, args);
-	else
-		RDebug::systemPanic(this->m_logName.c_str(), "m_logFile is nullptr");
+
+	if (this->m_console)
+		this->m_console->log(std::wstring(msg, msg + strlen(msg)).c_str());
 }
