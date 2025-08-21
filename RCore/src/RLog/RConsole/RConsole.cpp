@@ -125,7 +125,7 @@ RConsole::~RConsole()
 
     if (m_hEdit) DestroyWindow(m_hEdit);
     if (m_hClearButton) DestroyWindow(m_hClearButton);
-    if (m_hFont) DeleteObject(m_hFont);
+    if (m_hButtonFont) DeleteObject(m_hButtonFont);
 
     if (m_thread.joinable()) m_thread.join();
 }
@@ -179,7 +179,18 @@ void RConsole::threadMain(std::wstring title)
         copyButtonPos.x, copyButtonPos.y, copyButtonPos.width, copyButtonPos.height,
         m_hwnd, (HMENU)ACTION_COPY, hInstance, nullptr);
 
-    m_hFont = CreateFontW(
+    m_hButtonFont = CreateFontW(
+        14, 0, 0, 0,
+        FW_NORMAL,
+        FALSE, FALSE, FALSE,
+        DEFAULT_CHARSET,
+        OUT_DEFAULT_PRECIS,
+        CLIP_DEFAULT_PRECIS,
+        CLEARTYPE_QUALITY,
+        FIXED_PITCH | FF_MODERN,
+        L"MS UI Gothic");
+
+    m_hEditFont = CreateFontW(
         14, 0, 0, 0,
         FW_NORMAL,
         FALSE, FALSE, FALSE,
@@ -190,7 +201,9 @@ void RConsole::threadMain(std::wstring title)
         FIXED_PITCH | FF_MODERN,
         L"Consolas");
 
-    SendMessageW(m_hEdit, WM_SETFONT, (WPARAM)m_hFont, TRUE);
+    SendMessageW(m_hEdit, WM_SETFONT, (WPARAM)m_hEditFont, TRUE);
+    SendMessageW(m_hClearButton, WM_SETFONT, (WPARAM)m_hButtonFont, TRUE);
+    SendMessageW(m_hCopyButton, WM_SETFONT, (WPARAM)m_hButtonFont, TRUE);
 
     SetWindowLongPtrW(m_hwnd, GWLP_USERDATA, (LONG_PTR)this);
 	setVisibility(m_bVisible);
@@ -257,5 +270,5 @@ WndPosData RConsole::getCopyButtonSize()
 {
 	WndPosData clearButtonPos = getClearButtonSize();
 
-	return WndPosData(clearButtonPos.x + clearButtonPos.width + 10, clearButtonPos.y, 80, 25);
+	return WndPosData(clearButtonPos.x + clearButtonPos.width + 5, clearButtonPos.y, 80, 25);
 }

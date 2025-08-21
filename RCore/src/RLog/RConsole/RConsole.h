@@ -39,7 +39,8 @@ private:
 	HWND m_hEdit = nullptr;
 	HWND m_hClearButton = nullptr;
 	HWND m_hCopyButton = nullptr;
-	HFONT m_hFont = nullptr;
+	HFONT m_hButtonFont = nullptr;
+	HFONT m_hEditFont = nullptr;
 
     void threadMain(std::wstring title);
 };
