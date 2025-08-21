@@ -48,6 +48,13 @@ LRESULT CALLBACK AppLogWindowWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM 
         if (hEdit) 
         {
             int len = GetWindowTextLengthW(hEdit);
+
+            if (len > 0x7000)
+            {
+                SendMessageW(hEdit, EM_SETSEL, 0, 0x1000);
+                SendMessageW(hEdit, EM_REPLACESEL, FALSE, (LPARAM)L"");
+            }
+
             SendMessageW(hEdit, EM_SETSEL, len, len);
             SendMessageW(hEdit, EM_REPLACESEL, FALSE, (LPARAM)text->c_str());
             SendMessageW(hEdit, EM_SCROLLCARET, 0, 0);
@@ -147,7 +154,7 @@ void RConsole::threadMain(std::wstring title)
     m_hwnd = CreateWindowExW(
         0, L"AppLogWindow", title.c_str(),
         WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-        CW_USEDEFAULT, CW_USEDEFAULT, 640, 400,
+        CW_USEDEFAULT, CW_USEDEFAULT, 800, 400,
         nullptr, nullptr, hInstance, nullptr);
 
     if (!m_hwnd) return;
@@ -180,7 +187,7 @@ void RConsole::threadMain(std::wstring title)
         m_hwnd, (HMENU)ACTION_COPY, hInstance, nullptr);
 
     m_hButtonFont = CreateFontW(
-        14, 0, 0, 0,
+        16, 0, 0, 0,
         FW_NORMAL,
         FALSE, FALSE, FALSE,
         DEFAULT_CHARSET,
@@ -188,10 +195,10 @@ void RConsole::threadMain(std::wstring title)
         CLIP_DEFAULT_PRECIS,
         CLEARTYPE_QUALITY,
         FIXED_PITCH | FF_MODERN,
-        L"MS Gothic");
+        L"Open Sans");
 
     m_hEditFont = CreateFontW(
-        14, 0, 0, 0,
+        16, 0, 0, 0,
         FW_NORMAL,
         FALSE, FALSE, FALSE,
         DEFAULT_CHARSET,
@@ -199,7 +206,7 @@ void RConsole::threadMain(std::wstring title)
         CLIP_DEFAULT_PRECIS,
         CLEARTYPE_QUALITY,
         FIXED_PITCH | FF_MODERN,
-        L"Consolas");
+        L"Open Sans");
 
     SendMessageW(m_hEdit, WM_SETFONT, (WPARAM)m_hEditFont, TRUE);
     SendMessageW(m_hClearButton, WM_SETFONT, (WPARAM)m_hButtonFont, TRUE);
