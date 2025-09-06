@@ -104,7 +104,8 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	std::stringstream ss;
 	ss << now << '\t' << msg;
 
-	const char* msg_ptr = ss.str().c_str();
+    std::string msg_str = ss.str();
+    const char* msg_ptr = msg_str.c_str();
 
 	RDebug::debuggerOut(this->m_logLevel, level, msg_ptr);
 
