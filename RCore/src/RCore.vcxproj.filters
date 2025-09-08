@@ -96,6 +96,15 @@
     <ClInclude Include="RLog\RConsole\RConsole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FromSoftware\Param\Param.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\Param\PARAM\PARAM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\Param\Row.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">
@@ -171,6 +180,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RLog\RConsole\RConsole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\Param\PARAM\PARAM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

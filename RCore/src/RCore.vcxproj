@@ -159,6 +159,9 @@
     <ClInclude Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.h" />
     <ClInclude Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.h" />
     <ClInclude Include="FromSoftware\CCM2\DLFontDataCCM2.h" />
+    <ClInclude Include="FromSoftware\Param\Param.inl" />
+    <ClInclude Include="FromSoftware\Param\PARAM\PARAM.h" />
+    <ClInclude Include="FromSoftware\Param\Row.inl" />
     <ClInclude Include="FromSoftware\TimeAct\TAE3\TAE3.h" />
     <ClInclude Include="FromSoftware\TimeAct\TaeExport\TaeExport.h" />
     <ClInclude Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.h" />
@@ -188,6 +191,7 @@
     <ClCompile Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.cpp" />
     <ClCompile Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.cpp" />
     <ClCompile Include="FromSoftware\CCM2\DLFontDataCCM2.cpp" />
+    <ClCompile Include="FromSoftware\Param\PARAM\PARAM.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TAE3\TAE3.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TaeExport\TaeExport.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TaeTemplate\TaeTemplate.cpp" />
