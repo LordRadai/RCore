@@ -2,6 +2,7 @@
 #include "TimeActEvent/TimeActEvent.h"
 #include "TAE3/TAE3.h"
 #include "TaeTemplate/TaeTemplate.h"
+#include "TaeExport/TaeExport.h"
 
 namespace TimeAct
 {
