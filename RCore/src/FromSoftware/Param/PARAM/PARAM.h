@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#define MAX_ROW_COUNT 0xFFFF
 
 namespace Param
 {
@@ -34,7 +35,7 @@ namespace Param
 		struct PARAM
 		{
 			Header<T> header;
-			Row<T> rows[];
+			Row<T> rows[MAX_ROW_COUNT];
 
 			void locate();
 		};
