@@ -129,7 +129,8 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 	std::stringstream ss;
 	ss << now << '\t' << msg;
 
-	const char* msg_ptr = ss.str().c_str();
+	std::string msg_str = ss.str();
+	const char* msg_ptr = msg_str.c_str();
 
 	RDebug::systemAlert(this->m_logLevel, level, this->m_logName.c_str(), msg_ptr);
 
@@ -153,7 +154,8 @@ void RLog::panicMessage(const char* fmt, ...)
 	std::stringstream ss;
 	ss << now << '\t' << msg;
 
-	const char* msg_ptr = ss.str().c_str();
+	std::string msg_str = ss.str();
+	const char* msg_ptr = msg_str.c_str();
 
 	if (this->m_logFile)
 		this->m_logFile->addLog(msg_ptr);
@@ -177,7 +179,8 @@ void RLog::addEntry(bool print_time, const char* fmt, ...)
 	std::stringstream ss;
 	ss << now << '\t' << msg;
 
-	const char* msg_ptr = ss.str().c_str();
+	std::string msg_str = ss.str();
+	const char* msg_ptr = msg_str.c_str();
 
 	if (this->m_logFile)
 		this->m_logFile->addLog(msg_ptr);
