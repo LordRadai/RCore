@@ -75,8 +75,9 @@ bool TextLog::addLog(const char* fmt, ...)
 	msg = fmt;
 	vsprintf_s(msg_buf, msg.c_str(), args);
 
-    std::string filePath = this->m_outPath;
+	va_end(args);
 
+	this->m_ofstream << msg_buf;
     this->m_ofstream.flush();
 
     return true;
