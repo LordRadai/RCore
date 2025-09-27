@@ -105,6 +105,9 @@
     <ClInclude Include="FromSoftware\Param\Row.inl">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RFileSystem\RFileSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">

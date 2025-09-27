@@ -1,6 +1,6 @@
 #include <fstream>
 #include <ostream>
-#include <filesystem>
+#include "RFileSystem/RFileSystem.h"
 #include "TextLog.h"
 #include "../RDebug/RDebug.h"
 
@@ -49,10 +49,10 @@ bool TextLog::createLogFile()
     if (!this->m_init)
         return false;
 
-    std::wstring parentPath = std::filesystem::path(this->m_outPath).parent_path();
+    std::wstring parentPath = std_fs::path(this->m_outPath).parent_path().wstring();
 
     if (parentPath.compare(L""))
-        std::filesystem::create_directories(parentPath);
+        std_fs::create_directories(parentPath);
 
     std::string filePath = this->m_outPath;
 

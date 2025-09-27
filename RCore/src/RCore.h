@@ -6,6 +6,7 @@
 #include "RMath/RMath.h"
 #include "RMemory/RMemory.h"
 #include "RString/RString.h"
+#include "RFileSystem/RFileSystem.h"
 #include "RXML/RXML.h"
 #include "Fromsoftware/TimeAct/TimeAct.h"
 #include "FromSoftware/BND4/BND4.h"

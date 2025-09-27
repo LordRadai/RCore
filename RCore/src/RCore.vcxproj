@@ -123,7 +123,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -142,7 +142,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -170,6 +170,7 @@
     <ClInclude Include="FromSoftware\TimeAct\TimeActEvent\TimeActEvent.h" />
     <ClInclude Include="FromSoftware\TimeAct\TimeActEvent\TimeActEventData\TimeActEventData.h" />
     <ClInclude Include="RCore.h" />
+    <ClInclude Include="RFileSystem\RFileSystem.h" />
     <ClInclude Include="RFile\RFile.h" />
     <ClInclude Include="RINI\mini\ini.h" />
     <ClInclude Include="RINI\RINI.h" />
@@ -219,12 +220,14 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\directxtk_uwp.2024.6.5.1\build\native\directxtk_uwp.targets" Condition="Exists('..\packages\directxtk_uwp.2024.6.5.1\build\native\directxtk_uwp.targets')" />
-    <Import Project="..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets" Condition="Exists('..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets')" />
+    <Import Project="..\..\..\packages\boost.1.87.0\build\boost.targets" Condition="Exists('..\..\..\packages\boost.1.87.0\build\boost.targets')" />
+    <Import Project="..\..\..\packages\directxtk_uwp.2025.7.10.1\build\native\directxtk_uwp.targets" Condition="Exists('..\..\..\packages\directxtk_uwp.2025.7.10.1\build\native\directxtk_uwp.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\directxtk_uwp.2025.3.21.2\build\native\directxtk_uwp.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\boost.1.87.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\boost.1.87.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\directxtk_uwp.2025.7.10.1\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\directxtk_uwp.2025.7.10.1\build\native\directxtk_uwp.targets'))" />
   </Target>
 </Project>
