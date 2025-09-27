@@ -1,6 +1,5 @@
-#include "RFileSystem/RFileSystem.h"
+#include <filesystem>
 #include <assert.h>
-#include <algorithm>
 #include "TimeAct.h"
 
 namespace TimeAct
@@ -776,7 +775,7 @@ namespace TimeAct
 			TimeAct* timeAct = new TimeAct;
 
 			timeAct->m_filePath = filepath;
-			timeAct->m_name = std_fs::path(filepath).filename().wstring();
+			timeAct->m_name = std::filesystem::path(filepath).filename();
 
 			timeAct->m_fileData = FileData::createFromResource(tae3->fileData, taeTemplate);
 			timeAct->m_animFileInfo = AnimFileInfo::createFromResource(tae3->animFileInfo);
@@ -784,6 +783,8 @@ namespace TimeAct
 			timeAct->initialise();
 
 			int fileSize = timeAct->getMemoryRequirements();
+
+			//g_appLog->debugMessage(MsgLevel_Debug, "Read %ws for %d bytes\n", filepath.c_str(), fileSize);
 
 			return timeAct;
 		}
@@ -914,12 +915,12 @@ namespace TimeAct
 	{
 		//g_appLog->debugMessage(MsgLevel_Info, "Saving TimeAct at %ws\n", filepath.c_str());
 
-		if (std_fs::exists(filepath))
+		if (std::filesystem::exists(filepath))
 		{
-			std_fs::path bak_path = filepath;
+			std::filesystem::path bak_path = filepath;
 			bak_path.replace_extension(L".tae.bak");
 
-			std_fs::copy_file(filepath, bak_path, true);
+			std::filesystem::copy_file(filepath, bak_path, std::filesystem::copy_options::overwrite_existing);
 		}
 
 		RFile* fileRes = RFile::create(filepath);

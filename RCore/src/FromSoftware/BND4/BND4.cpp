@@ -1,6 +1,6 @@
 #include <assert.h>
 #include "BND4.h"
-#include "RFileSystem/RFileSystem.h"
+#include <filesystem>
 #include "RMemory/RMemory.h"
 
 namespace BND4
@@ -83,7 +83,7 @@ namespace BND4
 
 	Bnd4* Bnd4::loadFromFile(std::wstring filepath)
 	{
-		if (!std_fs::exists(filepath))
+		if (!std::filesystem::exists(filepath))
 			return nullptr;
 
 		Bnd4* bndFile = new Bnd4;
@@ -160,7 +160,7 @@ namespace BND4
 	{
 		for (int i = 0; i < this->m_fileCount; i++)
 		{
-			std_fs::path fileName = this->m_files[i]->name;
+			std::filesystem::path fileName = this->m_files[i]->name;
 
 			if (fileName.extension().compare(extension) == 0)
 				return this->m_files[i];

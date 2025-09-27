@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <filesystem>
 
 namespace RString
 {
@@ -22,6 +23,11 @@ namespace RString
 	inline std::wstring toWide(const std::string& s)
 	{
 		return std::wstring(s.begin(), s.end());
+	}
+
+	inline std::string removeExtension(std::string filename)
+	{
+		return std::filesystem::path(filename).stem().string();
 	}
 
 	std::string replace(std::string str, std::string substr, std::string replacement);

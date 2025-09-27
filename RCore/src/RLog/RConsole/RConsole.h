@@ -9,22 +9,6 @@ struct WndPosData
     int y;
     int width;
     int height;
-
-    WndPosData()
-    {
-        x = 0;
-        y = 0;
-        width = 0;
-		height = 0;
-    }
-
-    WndPosData(int x, int y, int width, int height)
-    {
-        this->x = x;
-        this->y = y;
-		this->width = width;
-		this->height = height;
-    }
 };
 
 class RConsole

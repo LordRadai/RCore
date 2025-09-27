@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <assert.h>
 
 #include "DLFontDataCCM2.h"
@@ -5,7 +6,6 @@
 #include "RFile/RFile.h"
 #include "RString/RString.h"
 #include "RMemory/RMemory.h"
-#include "RFileSystem/RFileSystem.h"
 
 namespace DLFontData
 {
@@ -169,7 +169,7 @@ namespace DLFontData
 
 			DLFontDataCCM2* fontData = new DLFontDataCCM2();
 
-			fontData->m_fileName = std_fs::path(path).filename().wstring();
+			fontData->m_fileName = std::filesystem::path(path).filename();
 			fontData->m_filePath = path;
 			fontData->m_fileSize = bytesRead;
 
@@ -241,15 +241,15 @@ namespace DLFontData
 		if (this->m_init == false)
 			return false;
 
-		std_fs::path filepath = path;
-		std_fs::create_directories(filepath.parent_path());
+		std::filesystem::path filepath = path;
+		std::filesystem::create_directories(filepath.parent_path());
 
-		if (std_fs::exists(filepath))
+		if (std::filesystem::exists(filepath))
 		{
-			std_fs::path bak_path = filepath;
+			std::filesystem::path bak_path = filepath;
 			bak_path.replace_extension(L".ccm.bak");
 
-			std_fs::copy_file(filepath, bak_path, true);
+			std::filesystem::copy_file(filepath, bak_path, std::filesystem::copy_options::overwrite_existing);
 		}
 
 		RFile* fileRes = RFile::create(path);
