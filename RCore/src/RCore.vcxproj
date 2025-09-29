@@ -161,6 +161,7 @@
     <ClInclude Include="FromSoftware\CCM2\FontDataCCM2.h" />
     <ClInclude Include="FromSoftware\CCM\CCM\CCM.h" />
     <ClInclude Include="FromSoftware\CCM\CCM\CodeGroup\CodeGroup.h" />
+    <ClInclude Include="FromSoftware\CCM\CCM\Glyph\Glyph.h" />
     <ClInclude Include="FromSoftware\CCM\FontDataCCM.h" />
     <ClInclude Include="FromSoftware\Param\Param.inl" />
     <ClInclude Include="FromSoftware\Param\PARAM\PARAM.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="FromSoftware\CCM2\FontDataCCM2.cpp" />
     <ClCompile Include="FromSoftware\CCM\CCM\CCM.cpp" />
     <ClCompile Include="FromSoftware\CCM\CCM\CodeGroup\CodeGroup.cpp" />
+    <ClCompile Include="FromSoftware\CCM\CCM\Glyph\Glyph.cpp" />
     <ClCompile Include="FromSoftware\Param\PARAM\PARAM.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TAE3\TAE3.cpp" />
     <ClCompile Include="FromSoftware\TimeAct\TaeExport\TaeExport.cpp" />

@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include "CodeGroup/CodeGroup.h"
+#include "Glyph/Glyph.h"
 
 namespace FontData
 {

@@ -114,6 +114,9 @@
     <ClInclude Include="FromSoftware\CCM\CCM\CodeGroup\CodeGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FromSoftware\CCM\CCM\Glyph\Glyph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">
@@ -198,6 +201,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FromSoftware\CCM\CCM\CCM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\CCM\CCM\Glyph\Glyph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
