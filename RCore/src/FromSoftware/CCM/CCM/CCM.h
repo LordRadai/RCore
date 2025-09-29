@@ -19,13 +19,12 @@ namespace FontData
 			USHORT glyphCount;
 			UINT codeGroupOffset;
 			UINT glyphOffset;
-			bool bVar1C;
-			bool bVar1D;
+			BYTE bVar1C;
+			bool isBigEndian;
 			BYTE textureCount;
 
 			void locate();
 			CCM2 endianSwap();
-			bool isBigEndian() { return format == 512; }
 		};
 	}
 }

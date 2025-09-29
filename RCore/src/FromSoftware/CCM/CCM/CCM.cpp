@@ -22,6 +22,8 @@ namespace FontData
 			swapped.glyphCount = RMemory::endianSwap(glyphCount);
 			swapped.codeGroupOffset = RMemory::endianSwap(codeGroupOffset);
 			swapped.glyphOffset = RMemory::endianSwap(glyphOffset);
+			swapped.bVar1C = bVar1C;
+			swapped.isBigEndian = !isBigEndian;
 			swapped.textureCount = RMemory::endianSwap(textureCount);
 
 			return swapped;

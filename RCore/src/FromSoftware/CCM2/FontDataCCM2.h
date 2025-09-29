@@ -108,6 +108,8 @@ namespace FontData
 		int m_fontHeight = 0;
 		int m_textureWidth = 0;
 		int m_textureHeight = 0;
+		int m_unknown1C = 0;
+		bool m_bBigEndian = false;
 		int m_numTextures = 0;
 
 		std::vector<Glyph*> m_glyphs;

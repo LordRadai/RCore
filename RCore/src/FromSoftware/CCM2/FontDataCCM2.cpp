@@ -176,7 +176,7 @@ namespace FontData
 		{
 			CCM2::CCM2* ccm2 = static_cast<CCM2::CCM2*>(buffer);
 
-			const bool bBigEndian = ccm2->isBigEndian();
+			const bool bBigEndian = ccm2->isBigEndian;
 
 			if (bBigEndian)
 				*ccm2 = ccm2->endianSwap();
@@ -187,6 +187,8 @@ namespace FontData
 			fontData->m_filePath = path;
 			fontData->m_fileSize = bytesRead;
 
+			fontData->m_unknown1C = ccm2->bVar1C;
+			fontData->m_bBigEndian = bBigEndian;
 			fontData->m_numTextures = ccm2->textureCount;
 			fontData->m_fontHeight = ccm2->fontHeight;
 			fontData->m_textureWidth = ccm2->textureWidth;
@@ -226,7 +228,8 @@ namespace FontData
 		ccm2.glyphCount = (UINT)this->m_glyphs.size();
 		ccm2.texRegionOffset = sizeof(CCM2::CCM2);
 		ccm2.glyphOffset = ccm2.texRegionCount * sizeof(CCM2::TexRegion) + sizeof(CCM2::CCM2);
-		ccm2.alignment = 4;
+		ccm2.bVar1C = this->m_unknown1C;
+		ccm2.isBigEndian = this->m_bBigEndian;
 		ccm2.textureCount = (USHORT)this->m_numTextures;
 
 		file->write(ccm2);

@@ -17,12 +17,12 @@ namespace FontData
 			UINT glyphCount;
 			UINT texRegionOffset;
 			UINT glyphOffset;
-			USHORT alignment;
+			BYTE bVar1C;
+			bool isBigEndian;
 			USHORT textureCount;
 
 			void locate();
 			CCM2 endianSwap();
-			bool isBigEndian() { return format == 512; }
 		};
 	}
 }
