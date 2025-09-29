@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include "RFile/RFile.h"
 
-namespace DLFontData
+namespace FontData
 {
 	namespace CCM2
 	{

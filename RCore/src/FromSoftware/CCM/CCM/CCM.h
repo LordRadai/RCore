@@ -1,10 +1,10 @@
 #pragma once
-#include "TexRegion/TexRegion.h"
-#include "Glyph/Glyph.h"
+#include <Windows.h>
+#include "CodeGroup/CodeGroup.h"
 
 namespace FontData
 {
-	namespace CCM2
+	namespace CCM
 	{
 		struct CCM2
 		{
@@ -13,12 +13,14 @@ namespace FontData
 			USHORT fontHeight;
 			USHORT textureWidth;
 			USHORT textureHeight;
-			USHORT texRegionCount;
-			UINT glyphCount;
-			UINT texRegionOffset;
+			USHORT sVarE;
+			USHORT codeGroupCount;
+			USHORT glyphCount;
+			UINT codeGroupOffset;
 			UINT glyphOffset;
-			USHORT alignment;
-			USHORT textureCount;
+			bool bVar1C;
+			bool bVar1D;
+			BYTE textureCount;
 
 			void locate();
 			CCM2 endianSwap();

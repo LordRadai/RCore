@@ -1,9 +1,9 @@
-#include "CCM2.h"
+#include "CCM.h"
 #include "RMemory/RMemory.h"
 
 namespace FontData
 {
-	namespace CCM2
+	namespace CCM
 	{
 		void CCM2::locate()
 		{
@@ -17,11 +17,11 @@ namespace FontData
 			swapped.fontHeight = RMemory::endianSwap(fontHeight);
 			swapped.textureWidth = RMemory::endianSwap(textureWidth);
 			swapped.textureHeight = RMemory::endianSwap(textureHeight);
-			swapped.texRegionCount = RMemory::endianSwap(texRegionCount);
+			swapped.sVarE = RMemory::endianSwap(sVarE);
+			swapped.codeGroupCount = RMemory::endianSwap(codeGroupCount);
 			swapped.glyphCount = RMemory::endianSwap(glyphCount);
-			swapped.texRegionOffset = RMemory::endianSwap(texRegionOffset);
+			swapped.codeGroupOffset = RMemory::endianSwap(codeGroupOffset);
 			swapped.glyphOffset = RMemory::endianSwap(glyphOffset);
-			swapped.alignment = RMemory::endianSwap(alignment);
 			swapped.textureCount = RMemory::endianSwap(textureCount);
 
 			return swapped;

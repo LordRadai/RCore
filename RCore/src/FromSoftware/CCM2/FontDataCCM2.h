@@ -4,11 +4,11 @@
 #include <vector>
 #include "CCM2/CCM2.h"
 
-namespace DLFontData
+namespace FontData
 {
 	class TexRegion
 	{
-		friend class DLFontDataCCM2;
+		friend class FontDataCCM2;
 		friend class Glyph;
 
 	public:
@@ -37,7 +37,7 @@ namespace DLFontData
 
 	class Glyph
 	{
-		friend class DLFontDataCCM2;
+		friend class FontDataCCM2;
 
 	public:
 		static Glyph* create(int code, int idx, short textureIdx, short preSpace, short width, short advance, TexRegion* pTexRegion);
@@ -66,11 +66,11 @@ namespace DLFontData
 		short m_advance = 0;
 	};
 
-	class DLFontDataCCM2
+	class FontDataCCM2
 	{
 	public:
-		static DLFontDataCCM2* create(int font_size, int texture_size);
-		static DLFontDataCCM2* loadFile(std::wstring path);
+		static FontDataCCM2* create(int font_size, int texture_size);
+		static FontDataCCM2* loadFile(std::wstring path);
 
 		void destroy();
 
@@ -94,8 +94,8 @@ namespace DLFontData
 		bool save(std::wstring path);
 
 	protected:
-		DLFontDataCCM2() {}
-		~DLFontDataCCM2() {}
+		FontDataCCM2() {}
+		~FontDataCCM2() {}
 
 		int getMemoryRequirements();
 		CCM2::CCM2 generateBinary(RFile* file);

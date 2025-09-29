@@ -27,7 +27,7 @@ namespace RMemory
 	}
 
 	template <typename T>
-	T endian_swap(T value) 
+	T endianSwap(T value) 
 	{
 		static_assert(std::is_fundamental<T>::value, "endian_swap requires a fundamental type");
 
@@ -36,9 +36,8 @@ namespace RMemory
 		uint8_t* dst = reinterpret_cast<uint8_t*>(&result);
 
 		size_t n = sizeof(T);
-		for (size_t i = 0; i < n; ++i) {
-			dst[i] = src[n - 1 - i];  // reverse byte order
-		}
+		for (size_t i = 0; i < n; ++i)
+			dst[i] = src[n - 1 - i];
 
 		return result;
 	}

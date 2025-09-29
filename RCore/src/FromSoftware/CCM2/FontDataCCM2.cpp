@@ -1,13 +1,13 @@
 #include <filesystem>
 #include <assert.h>
 
-#include "DLFontDataCCM2.h"
+#include "FontDataCCM2.h"
 #include "RLog/RDebug/RDebug.h"
 #include "RFile/RFile.h"
 #include "RString/RString.h"
 #include "RMemory/RMemory.h"
 
-namespace DLFontData
+namespace FontData
 {
 	TexRegion* TexRegion::create(short x1, short y1, short x2, short y2)
 	{
@@ -127,13 +127,13 @@ namespace DLFontData
 		return glyph;
 	}
 
-	void DLFontDataCCM2::destroy()
+	void FontDataCCM2::destroy()
 	{
 		for (size_t i = 0; i < this->m_glyphs.size(); i++)
 			this->m_glyphs[i]->destroy();
 	}
 
-	Glyph* DLFontDataCCM2::getGlyph(int idx)
+	Glyph* FontDataCCM2::getGlyph(int idx)
 	{
 		if (idx > this->m_glyphs.size())
 			return nullptr;
@@ -141,7 +141,7 @@ namespace DLFontData
 		return this->m_glyphs[idx];
 	}
 
-	void DLFontDataCCM2::addGlyph(Glyph* glyph)
+	void FontDataCCM2::addGlyph(Glyph* glyph)
 	{
 		if (this->m_init == false)
 			return;
@@ -152,9 +152,9 @@ namespace DLFontData
 		this->m_glyphs.push_back(glyph);
 	}
 
-	DLFontDataCCM2* DLFontDataCCM2::create(int font_size, int texture_size)
+	FontDataCCM2* FontDataCCM2::create(int font_size, int texture_size)
 	{
-		DLFontDataCCM2* ccm2 = new DLFontDataCCM2();
+		FontDataCCM2* ccm2 = new FontDataCCM2();
 
 		ccm2->m_init = true;
 		ccm2->m_fontHeight = font_size;
@@ -165,7 +165,7 @@ namespace DLFontData
 		return ccm2;
 	}
 
-	DLFontDataCCM2* DLFontDataCCM2::loadFile(std::wstring path)
+	FontDataCCM2* FontDataCCM2::loadFile(std::wstring path)
 	{
 		size_t size;
 		void* buffer;
@@ -181,7 +181,7 @@ namespace DLFontData
 			if (bBigEndian)
 				*ccm2 = ccm2->endianSwap();
 
-			DLFontDataCCM2* fontData = new DLFontDataCCM2();
+			FontDataCCM2* fontData = new FontDataCCM2();
 
 			fontData->m_fileName = std::filesystem::path(path).filename();
 			fontData->m_filePath = path;
@@ -204,7 +204,7 @@ namespace DLFontData
 		}
 	}
 
-	int DLFontDataCCM2::getMemoryRequirements()
+	int FontDataCCM2::getMemoryRequirements()
 	{
 		int size = sizeof(CCM2::CCM2);
 
@@ -214,7 +214,7 @@ namespace DLFontData
 		return size;
 	}
 
-	CCM2::CCM2 DLFontDataCCM2::generateBinary(RFile* file)
+	CCM2::CCM2 FontDataCCM2::generateBinary(RFile* file)
 	{
 		CCM2::CCM2 ccm2;
 		ccm2.format = 0x20000;
@@ -248,7 +248,7 @@ namespace DLFontData
 		return ccm2;
 	}
 
-	bool DLFontDataCCM2::save(std::wstring path)
+	bool FontDataCCM2::save(std::wstring path)
 	{
 		if (this->m_init == false)
 			return false;

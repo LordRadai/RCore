@@ -1,7 +1,7 @@
 #include "TexRegion.h"
 #include "RMemory/RMemory.h"
 
-namespace DLFontData
+namespace FontData
 {
 	namespace CCM2
 	{
@@ -10,10 +10,10 @@ namespace DLFontData
 		TexRegion TexRegion::endianSwap()
 		{
 			TexRegion swapped = *this;
-			swapped.x1 = RMemory::endian_swap(x1);
-			swapped.y1 = RMemory::endian_swap(y1);
-			swapped.x2 = RMemory::endian_swap(x2);
-			swapped.y2 = RMemory::endian_swap(y2);
+			swapped.x1 = RMemory::endianSwap(x1);
+			swapped.y1 = RMemory::endianSwap(y1);
+			swapped.x2 = RMemory::endianSwap(x2);
+			swapped.y2 = RMemory::endianSwap(y2);
 
 			return swapped;
 		}

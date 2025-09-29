@@ -81,7 +81,7 @@
     <ClInclude Include="FromSoftware\TimeAct\TimeAct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FromSoftware\CCM2\DLFontDataCCM2.h">
+    <ClInclude Include="FromSoftware\CCM2\FontDataCCM2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.h">
@@ -103,6 +103,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FromSoftware\Param\Row.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\CCM\FontDataCCM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\CCM\CCM\CCM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\CCM\CCM\CodeGroup\CodeGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -167,7 +176,7 @@
     <ClCompile Include="FromSoftware\TimeAct\TimeAct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FromSoftware\CCM2\DLFontDataCCM2.cpp">
+    <ClCompile Include="FromSoftware\CCM2\FontDataCCM2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.cpp">
@@ -183,6 +192,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FromSoftware\Param\PARAM\PARAM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\CCM\CCM\CodeGroup\CodeGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\CCM\CCM\CCM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

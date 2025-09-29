@@ -9,5 +9,5 @@
 #include "RXML/RXML.h"
 #include "Fromsoftware/TimeAct/TimeAct.h"
 #include "FromSoftware/BND4/BND4.h"
-#include "FromSoftware/CCM2/DLFontDataCCM2.h"
+#include "FromSoftware/CCM2/FontDataCCM2.h"
 #include "FromSoftware/Param/Param.inl"
