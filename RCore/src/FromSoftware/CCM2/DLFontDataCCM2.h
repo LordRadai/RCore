@@ -41,7 +41,7 @@ namespace DLFontData
 
 	public:
 		static Glyph* create(int code, int idx, short textureIdx, short preSpace, short width, short advance, TexRegion* pTexRegion);
-		static Glyph* createFromResource(CCM2::Glyph* resource, char* ptr);
+		static Glyph* createFromResource(CCM2::Glyph* resource, char* ptr, bool bBigEndian);
 
 		void destroy();
 

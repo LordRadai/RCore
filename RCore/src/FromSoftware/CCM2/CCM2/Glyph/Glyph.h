@@ -7,9 +7,8 @@ namespace DLFontData
 {
 	namespace CCM2
 	{
-		class Glyph
+		struct Glyph
 		{
-		public:
 			int code = 0;
 			int texRegionOffset = 0;
 			short textureIndex = 0;
@@ -20,6 +19,7 @@ namespace DLFontData
 			int iVar14 = 0;
 
 			void locate(char* ptr);
+			void endianSwap();
 		};
 	}
 }

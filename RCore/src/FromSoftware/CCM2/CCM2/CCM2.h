@@ -22,6 +22,8 @@ namespace DLFontData
 			USHORT textureCount;
 
 			void locate();
+			void endianSwap();
+			bool isBigEndian() { return format == 0x20000; }
 		};
 	}
 }

@@ -74,8 +74,11 @@ namespace DLFontData
 		return sizeof(CCM2::Glyph) + this->m_texRegion->getMemoryRequirements();
 	}
 
-	Glyph* Glyph::createFromResource(CCM2::Glyph* resource, char* ptr)
+	Glyph* Glyph::createFromResource(CCM2::Glyph* resource, char* ptr, bool bBigEndian)
 	{
+		if (bBigEndian)
+			resource->endianSwap();
+
 		Glyph* glyph = new Glyph();
 
 		glyph->m_code = resource->code;
@@ -86,6 +89,9 @@ namespace DLFontData
 
 		CCM2::TexRegion* texRegion = (CCM2::TexRegion*)resource->texRegionOffset;
 		RMemory::fixPtr(texRegion, ptr);
+
+		if (bBigEndian)
+			texRegion->endianSwap();
 
 		glyph->m_texRegion = TexRegion::createFromResource(texRegion);
 
@@ -167,6 +173,11 @@ namespace DLFontData
 		{
 			CCM2::CCM2* ccm2 = static_cast<CCM2::CCM2*>(buffer);
 
+			const bool bBigEndian = ccm2->isBigEndian();
+
+			if (bBigEndian)
+				ccm2->endianSwap();
+
 			DLFontDataCCM2* fontData = new DLFontDataCCM2();
 
 			fontData->m_fileName = std::filesystem::path(path).filename();
@@ -182,7 +193,7 @@ namespace DLFontData
 			RMemory::fixPtr(pGlyphs, ccm2);
 
 			for (size_t i = 0; i < ccm2->glyphCount; i++)
-				fontData->m_glyphs.push_back(Glyph::createFromResource(&pGlyphs[i], (char*)ccm2));
+				fontData->m_glyphs.push_back(Glyph::createFromResource(&pGlyphs[i], (char*)ccm2, bBigEndian));
 
 			fontData->m_init = true;
 
