@@ -4,7 +4,7 @@
 #include <vector>
 #include "CCM/CCM.h"
 
-namespace FontData
+namespace FontDataCCM
 {
 	class CodeGroup
 	{

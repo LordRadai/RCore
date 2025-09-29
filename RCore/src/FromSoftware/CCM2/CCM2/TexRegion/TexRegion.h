@@ -2,7 +2,7 @@
 #include <fstream>
 #include "RFile/RFile.h"
 
-namespace FontData
+namespace FontDataCCM2
 {
 	namespace CCM2
 	{

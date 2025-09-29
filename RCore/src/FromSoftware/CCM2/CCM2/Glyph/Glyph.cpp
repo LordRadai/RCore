@@ -2,7 +2,7 @@
 #include "../TexRegion/TexRegion.h"
 #include "RMemory/RMemory.h"
 
-namespace FontData
+namespace FontDataCCM2
 {
 	namespace CCM2
 	{

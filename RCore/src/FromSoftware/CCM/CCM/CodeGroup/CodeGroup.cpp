@@ -1,7 +1,7 @@
 #include "CodeGroup.h"
 #include "RMemory/RMemory.h"
 
-namespace FontData
+namespace FontDataCCM
 {
 	namespace CCM
 	{

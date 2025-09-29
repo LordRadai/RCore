@@ -7,7 +7,7 @@
 #include "RString/RString.h"
 #include "RMemory/RMemory.h"
 
-namespace FontData
+namespace FontDataCCM2
 {
 	TexRegion* TexRegion::create(short x1, short y1, short x2, short y2)
 	{

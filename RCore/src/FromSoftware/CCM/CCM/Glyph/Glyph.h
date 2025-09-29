@@ -1,7 +1,7 @@
 #pragma once
 #include <Windows.h>
 
-namespace FontData
+namespace FontDataCCM
 {
 	namespace CCM2
 	{

@@ -3,7 +3,7 @@
 #include "CodeGroup/CodeGroup.h"
 #include "Glyph/Glyph.h"
 
-namespace FontData
+namespace FontDataCCM
 {
 	namespace CCM
 	{

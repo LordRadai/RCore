@@ -4,7 +4,7 @@
 #include <vector>
 #include "CCM2/CCM2.h"
 
-namespace FontData
+namespace FontDataCCM2
 {
 	class TexRegion
 	{
