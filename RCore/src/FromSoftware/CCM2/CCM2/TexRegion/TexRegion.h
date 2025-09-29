@@ -14,7 +14,7 @@ namespace DLFontData
 			short y2 = 0;
 
 			void locate(char* ptr);
-			void endianSwap();
+			TexRegion endianSwap();
 		};
 	}
 }

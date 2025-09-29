@@ -9,19 +9,21 @@ namespace DLFontData
 		{
 		};
 
-		void CCM2::endianSwap()
+		CCM2 CCM2::endianSwap()
 		{
-			format = RMemory::endian_swap(format);
-			fileSize = RMemory::endian_swap(fileSize);
-			fontHeight = RMemory::endian_swap(fontHeight);
-			textureWidth = RMemory::endian_swap(textureWidth);
-			textureHeight = RMemory::endian_swap(textureHeight);
-			texRegionCount = RMemory::endian_swap(texRegionCount);
-			glyphCount = RMemory::endian_swap(glyphCount);
-			texRegionOffset = RMemory::endian_swap(texRegionOffset);
-			glyphOffset = RMemory::endian_swap(glyphOffset);
-			alignment = RMemory::endian_swap(alignment);
-			textureCount = RMemory::endian_swap(textureCount);
+			CCM2 swapped = *this;
+			swapped.format = RMemory::endian_swap(format);
+			swapped.fileSize = RMemory::endian_swap(fileSize);
+			swapped.fontHeight = RMemory::endian_swap(fontHeight);
+			swapped.textureWidth = RMemory::endian_swap(textureWidth);
+			swapped.textureHeight = RMemory::endian_swap(textureHeight);
+			swapped.texRegionCount = RMemory::endian_swap(texRegionCount);
+			swapped.glyphCount = RMemory::endian_swap(glyphCount);
+			swapped.texRegionOffset = RMemory::endian_swap(texRegionOffset);
+			swapped.glyphOffset = RMemory::endian_swap(glyphOffset);
+			swapped.alignment = RMemory::endian_swap(alignment);
+			swapped.textureCount = RMemory::endian_swap(textureCount);
+			return swapped;
 		}
 	}
 }

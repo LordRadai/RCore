@@ -7,12 +7,15 @@ namespace DLFontData
 	{
 		void TexRegion::locate(char* ptr) {}
 
-		void TexRegion::endianSwap()
+		TexRegion TexRegion::endianSwap()
 		{
-			x1 = RMemory::endian_swap(x1);
-			y1 = RMemory::endian_swap(y1);
-			x2 = RMemory::endian_swap(x2);
-			y2 = RMemory::endian_swap(y2);
+			TexRegion swapped = *this;
+			swapped.x1 = RMemory::endian_swap(x1);
+			swapped.y1 = RMemory::endian_swap(y1);
+			swapped.x2 = RMemory::endian_swap(x2);
+			swapped.y2 = RMemory::endian_swap(y2);
+
+			return swapped;
 		}
 	}
 }

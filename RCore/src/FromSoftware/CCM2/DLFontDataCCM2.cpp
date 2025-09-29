@@ -77,7 +77,7 @@ namespace DLFontData
 	Glyph* Glyph::createFromResource(CCM2::Glyph* resource, char* ptr, bool bBigEndian)
 	{
 		if (bBigEndian)
-			resource->endianSwap();
+			*resource = resource->endianSwap();
 
 		Glyph* glyph = new Glyph();
 
@@ -91,9 +91,12 @@ namespace DLFontData
 		RMemory::fixPtr(texRegion, ptr);
 
 		if (bBigEndian)
-			texRegion->endianSwap();
-
-		glyph->m_texRegion = TexRegion::createFromResource(texRegion);
+		{
+			CCM2::TexRegion swapped = texRegion->endianSwap();
+			glyph->m_texRegion = TexRegion::createFromResource(&swapped);
+		}
+		else
+			glyph->m_texRegion = TexRegion::createFromResource(texRegion);
 
 		return glyph;
 	}
@@ -176,7 +179,7 @@ namespace DLFontData
 			const bool bBigEndian = ccm2->isBigEndian();
 
 			if (bBigEndian)
-				ccm2->endianSwap();
+				*ccm2 = ccm2->endianSwap();
 
 			DLFontDataCCM2* fontData = new DLFontDataCCM2();
 

@@ -19,7 +19,7 @@ namespace DLFontData
 			int iVar14 = 0;
 
 			void locate(char* ptr);
-			void endianSwap();
+			Glyph endianSwap();
 		};
 	}
 }
