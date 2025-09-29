@@ -164,10 +164,10 @@ namespace DLFontData
 
 	DLFontDataCCM2* DLFontDataCCM2::loadFile(std::wstring path)
 	{
-		UINT64 size;
+		size_t size;
 		void* buffer;
 
-		UINT64 bytesRead = RFile::allocAndLoad(path, &buffer, &size, 4);
+		size_t bytesRead = RFile::allocAndLoad(path, &buffer, &size, 4);
 
 		if (bytesRead > 0)
 		{
