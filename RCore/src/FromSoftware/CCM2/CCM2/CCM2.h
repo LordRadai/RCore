@@ -14,8 +14,7 @@ namespace DLFontData
 			USHORT textureWidth;
 			USHORT textureHeight;
 			USHORT texRegionCount;
-			USHORT glyphCount;
-			BYTE pad[2];
+			UINT glyphCount;
 			UINT texRegionOffset;
 			UINT glyphOffset;
 			USHORT alignment;
@@ -23,7 +22,7 @@ namespace DLFontData
 
 			void locate();
 			void endianSwap();
-			bool isBigEndian() { return format == 0x20000; }
+			bool isBigEndian() { return format == 512; }
 		};
 	}
 }

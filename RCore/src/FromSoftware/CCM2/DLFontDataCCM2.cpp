@@ -220,9 +220,7 @@ namespace DLFontData
 		ccm2.textureWidth = this->m_textureWidth;
 		ccm2.textureHeight = this->m_textureHeight;
 		ccm2.texRegionCount = (USHORT)this->m_glyphs.size();
-		ccm2.glyphCount = (USHORT)this->m_glyphs.size();
-		ccm2.pad[0] = 0;
-		ccm2.pad[1] = 0;
+		ccm2.glyphCount = (UINT)this->m_glyphs.size();
 		ccm2.texRegionOffset = sizeof(CCM2::CCM2);
 		ccm2.glyphOffset = ccm2.texRegionCount * sizeof(CCM2::TexRegion) + sizeof(CCM2::CCM2);
 		ccm2.alignment = 4;
