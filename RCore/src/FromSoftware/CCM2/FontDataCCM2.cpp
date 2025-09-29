@@ -187,7 +187,6 @@ namespace FontData
 			fontData->m_filePath = path;
 			fontData->m_fileSize = bytesRead;
 
-			fontData->m_unknown1C = ccm2->bVar1C;
 			fontData->m_bBigEndian = bBigEndian;
 			fontData->m_numTextures = ccm2->textureCount;
 			fontData->m_fontHeight = ccm2->fontHeight;
@@ -228,7 +227,7 @@ namespace FontData
 		ccm2.glyphCount = (UINT)this->m_glyphs.size();
 		ccm2.texRegionOffset = sizeof(CCM2::CCM2);
 		ccm2.glyphOffset = ccm2.texRegionCount * sizeof(CCM2::TexRegion) + sizeof(CCM2::CCM2);
-		ccm2.bVar1C = this->m_unknown1C;
+		ccm2.bVar1C = 4;
 		ccm2.isBigEndian = this->m_bBigEndian;
 		ccm2.textureCount = (USHORT)this->m_numTextures;
 
