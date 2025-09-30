@@ -152,9 +152,16 @@ namespace FontDataCCM
 			fontData->m_fontHeight = ccm->fontHeight;
 			fontData->m_textureWidth = ccm->textureWidth;
 			fontData->m_textureHeight = ccm->textureHeight;
-			CCM::Glyph* pGlyphs = (CCM::Glyph*)ccm->glyphOffset;
 
+			CCM::CodeGroup* pCodeGroups = (CCM::CodeGroup*)ccm->codeGroupOffset;
+			RMemory::fixPtr(pCodeGroups, ccm);
+
+			for (size_t i = 0; i < ccm->codeGroupCount; i++)
+				fontData->m_codeGroups.push_back(CodeGroup::createFromResource(&pCodeGroups[i], (char*)ccm, bBigEndian));
+
+			CCM::Glyph* pGlyphs = (CCM::Glyph*)ccm->glyphOffset;
 			RMemory::fixPtr(pGlyphs, ccm);
+
 			for (size_t i = 0; i < ccm->glyphCount; i++)
 				fontData->m_glyphs.push_back(Glyph::createFromResource(&pGlyphs[i], (char*)ccm, bBigEndian));
 
