@@ -243,7 +243,7 @@ namespace FontDataCCM
 		ccm.textureWidth = this->m_textureWidth;
 		ccm.textureHeight = this->m_textureHeight;
 		ccm.sVarE = sizeof(CCM::CCM);
-		ccm.codeGroupCount = 0;
+		ccm.codeGroupCount = (USHORT)this->m_codeGroups.size();
 		ccm.glyphCount = (USHORT)this->m_glyphs.size();
 		ccm.codeGroupOffset = sizeof(CCM::CCM);
 		ccm.glyphOffset = sizeof(CCM::CCM) + ccm.codeGroupCount * sizeof(CCM::CodeGroup);
