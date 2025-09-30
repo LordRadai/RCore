@@ -1,13 +1,36 @@
 #pragma once
 #include <Windows.h>
-#include "CodeGroup/CodeGroup.h"
-#include "Glyph/Glyph.h"
 
 namespace FontDataCCM
 {
 	namespace CCM
 	{
-		struct CCM2
+		struct CodeGroup
+		{
+			int startCode = 0;
+			int endCode = 0;
+			int glyphIndex = 0;
+
+			void locate(char* ptr);
+			CodeGroup endianSwap();
+		};
+
+		struct Glyph
+		{
+			float u1;
+			float v1;
+			float u2;
+			float v2;
+			short prespace;
+			short width;
+			short advance;
+			short textureIndex;
+
+			void locate(char* ptr);
+			Glyph endianSwap();
+		};
+
+		struct CCM
 		{
 			UINT format;
 			UINT fileSize;
@@ -24,7 +47,7 @@ namespace FontDataCCM
 			BYTE textureCount;
 
 			void locate();
-			CCM2 endianSwap();
+			CCM endianSwap();
 		};
 	}
 }

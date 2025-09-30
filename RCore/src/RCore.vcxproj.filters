@@ -84,12 +84,6 @@
     <ClInclude Include="FromSoftware\CCM2\FontDataCCM2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FromSoftware\CCM2\CCM2\CCM2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,12 +103,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FromSoftware\CCM\CCM\CCM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FromSoftware\CCM\CCM\CodeGroup\CodeGroup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FromSoftware\CCM\CCM\Glyph\Glyph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -182,12 +170,6 @@
     <ClCompile Include="FromSoftware\CCM2\FontDataCCM2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FromSoftware\CCM2\CCM2\TexRegion\TexRegion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FromSoftware\CCM2\CCM2\Glyph\Glyph.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FromSoftware\CCM2\CCM2\CCM2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -197,13 +179,10 @@
     <ClCompile Include="FromSoftware\Param\PARAM\PARAM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FromSoftware\CCM\CCM\CodeGroup\CodeGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FromSoftware\CCM\CCM\CCM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FromSoftware\CCM\CCM\Glyph\Glyph.cpp">
+    <ClCompile Include="FromSoftware\CCM\FontDataCCM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

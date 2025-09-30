@@ -45,7 +45,7 @@ size_t RFile::getFileSize(std::wstring fileName)
 	return size;
 }
 
-size_t RFile::allocAndLoad(std::wstring fileName, void** buffer, size_t* bufferSize, UINT alignment)
+int64_t RFile::allocAndLoad(std::wstring fileName, void** buffer, int64_t* bufferSize, UINT alignment)
 {
 	std::ifstream file;
 
@@ -57,7 +57,7 @@ size_t RFile::allocAndLoad(std::wstring fileName, void** buffer, size_t* bufferS
 		return -1;
 	}
 
-	size_t size = getFileSize(fileName);
+	int64_t size = getFileSize(fileName);
 
 	*bufferSize = RMemory::align(size, alignment);
 

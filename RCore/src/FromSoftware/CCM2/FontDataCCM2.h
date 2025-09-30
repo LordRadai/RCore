@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "CCM2/CCM2.h"
+#include "RFile/RFile.h"
 
 namespace FontDataCCM2
 {
@@ -27,7 +28,7 @@ namespace FontDataCCM2
 		~TexRegion() {}
 
 		int getMemoryRequirements();
-		CCM2::TexRegion generateBinary(RFile* file);
+		CCM2::TexRegion generateBinary(RFile* file, bool bBigEndian);
 
 		short m_x1 = 0;
 		short m_y1 = 0;
@@ -56,7 +57,7 @@ namespace FontDataCCM2
 		~Glyph() {}
 
 		int getMemoryRequirements();
-		CCM2::Glyph generateBinary(RFile* file, int glyphIdx);
+		CCM2::Glyph generateBinary(RFile* file, int glyphIdx, bool bBigEndian);
 
 		int m_code = 0;
 		TexRegion* m_texRegion = nullptr;
@@ -91,14 +92,14 @@ namespace FontDataCCM2
 
 		void addGlyph(Glyph* glyph);
 
-		bool save(std::wstring path);
+		bool save(std::wstring path, bool bBigEndian = false);
 
 	protected:
 		FontDataCCM2() {}
 		~FontDataCCM2() {}
 
 		int getMemoryRequirements();
-		CCM2::CCM2 generateBinary(RFile* file);
+		CCM2::CCM2 generateBinary(RFile* file, bool bBigEndian);
 
 		std::wstring m_fileName = L"";
 		std::wstring m_filePath = L"";

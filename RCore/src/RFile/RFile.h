@@ -2,6 +2,8 @@
 #include <fstream>
 #include <Windows.h>
 
+#define FILE_ASSERT_POS(rfile, pos) { assert(rfile->tell() == pos); }
+
 enum FileMode
 {
 	kFileModeNone = (1 << 0),
@@ -20,7 +22,7 @@ public:
 	void close();
 
 	static size_t getFileSize(std::wstring fileName);
-	static size_t allocAndLoad(std::wstring fileName, void** buffer, size_t* bufferSize, UINT alignment = 16);
+	static int64_t allocAndLoad(std::wstring fileName, void** buffer, int64_t* bufferSize, UINT alignment = 16);
 
 	bool isOpen() const { return this->m_file.is_open(); }
 

@@ -41,7 +41,7 @@ namespace FontDataCCM2
 		return sizeof(CCM2::TexRegion);
 	}
 
-	CCM2::TexRegion TexRegion::generateBinary(RFile* file)
+	CCM2::TexRegion TexRegion::generateBinary(RFile* file, bool bBigEndian)
 	{
 		CCM2::TexRegion texRegion;
 
@@ -49,6 +49,9 @@ namespace FontDataCCM2
 		texRegion.y1 = this->m_y1;
 		texRegion.x2 = this->m_x2;
 		texRegion.y2 = this->m_y2;
+
+		if (bBigEndian)
+			texRegion = texRegion.endianSwap();
 
 		file->write(texRegion);
 
@@ -109,7 +112,7 @@ namespace FontDataCCM2
 		delete this;
 	}
 
-	CCM2::Glyph Glyph::generateBinary(RFile* file, int glyphIdx)
+	CCM2::Glyph Glyph::generateBinary(RFile* file, int glyphIdx, bool bBigEndian)
 	{
 		CCM2::Glyph glyph;
 
@@ -121,6 +124,9 @@ namespace FontDataCCM2
 		glyph.advance = this->m_advance;
 		glyph.iVar10 = 0;
 		glyph.iVar14 = 0;
+
+		if (bBigEndian)
+			glyph = glyph.endianSwap();
 
 		file->write(glyph);
 
@@ -167,10 +173,10 @@ namespace FontDataCCM2
 
 	FontDataCCM2* FontDataCCM2::loadFile(std::wstring path)
 	{
-		size_t size;
+		int64_t size;
 		void* buffer;
 
-		size_t bytesRead = RFile::allocAndLoad(path, &buffer, &size, 4);
+		int64_t bytesRead = RFile::allocAndLoad(path, &buffer, &size, 4);
 
 		if (bytesRead > 0)
 		{
@@ -215,7 +221,7 @@ namespace FontDataCCM2
 		return size;
 	}
 
-	CCM2::CCM2 FontDataCCM2::generateBinary(RFile* file)
+	CCM2::CCM2 FontDataCCM2::generateBinary(RFile* file, bool bBigEndian)
 	{
 		CCM2::CCM2 ccm2;
 		ccm2.format = 0x20000;
@@ -231,26 +237,27 @@ namespace FontDataCCM2
 		ccm2.isBigEndian = this->m_bBigEndian;
 		ccm2.textureCount = (USHORT)this->m_numTextures;
 
+		if (bBigEndian)
+			ccm2 = ccm2.endianSwap();
+
 		file->write(ccm2);
-		ptrdiff_t pos = file->tell();
-		assert(pos == ccm2.texRegionOffset);
+
+		FILE_ASSERT_POS(file, ccm2.texRegionOffset);
 
 		for (size_t i = 0; i < this->m_glyphs.size(); i++)
-			this->m_glyphs[i]->m_texRegion->generateBinary(file);
+			this->m_glyphs[i]->m_texRegion->generateBinary(file, bBigEndian);
 
-		pos = file->tell();
-		assert(pos == ccm2.glyphOffset);
+		FILE_ASSERT_POS(file, ccm2.glyphOffset);
 
 		for (size_t i = 0; i < this->m_glyphs.size(); i++)
-			this->m_glyphs[i]->generateBinary(file, i);
+			this->m_glyphs[i]->generateBinary(file, i, bBigEndian);
 
-		pos = file->tell();
-		assert(pos == ccm2.fileSize);
+		FILE_ASSERT_POS(file, ccm2.fileSize);
 
 		return ccm2;
 	}
 
-	bool FontDataCCM2::save(std::wstring path)
+	bool FontDataCCM2::save(std::wstring path, bool bBigEndian)
 	{
 		if (this->m_init == false)
 			return false;
@@ -268,7 +275,7 @@ namespace FontDataCCM2
 
 		RFile* fileRes = RFile::create(path);
 
-		CCM2::CCM2 ccm2 = this->generateBinary(fileRes);
+		CCM2::CCM2 ccm2 = this->generateBinary(fileRes, bBigEndian);
 
 		return true;
 	}

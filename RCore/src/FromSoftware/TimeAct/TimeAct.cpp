@@ -762,10 +762,10 @@ namespace TimeAct
 
 	TimeAct* TimeAct::createFromFile(std::wstring filepath, TaeTemplate* taeTemplate)
 	{
-		UINT64 size;
+		int64_t size;
 		void* buffer;
 
-		UINT64 bytesRead = RFile::allocAndLoad(filepath, &buffer, &size);
+		int64_t bytesRead = RFile::allocAndLoad(filepath, &buffer, &size);
 
 		if (bytesRead > 0)
 		{
