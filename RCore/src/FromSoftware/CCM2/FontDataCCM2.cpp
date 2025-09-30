@@ -275,6 +275,7 @@ namespace FontDataCCM2
 
 		RFile* fileRes = RFile::create(path);
 
+		this->m_bBigEndian = bBigEndian;
 		CCM2::CCM2 ccm2 = this->generateBinary(fileRes, bBigEndian);
 
 		return true;
