@@ -33,6 +33,14 @@ namespace FontDataCCM
 		delete this;
 	}
 
+	int CodeGroup::getGlyphIndexForCharCode(int charCode) const
+	{
+		if (this->isCharCodeInRange(charCode))
+			return this->m_glyphIndex + (charCode - this->m_startCode);
+
+		return -1;
+	}
+
 	int CodeGroup::getMemoryRequirements()
 	{
 		return sizeof(CCM::CodeGroup);
@@ -203,6 +211,38 @@ namespace FontDataCCM
 			return;
 
 		this->m_glyphs.push_back(glyph);
+	}
+
+	CodeGroup* FontDataCCM::getCodeGroup(int idx)
+	{
+		if (idx < 0 || idx >= this->m_codeGroups.size())
+			return nullptr;
+
+		return this->m_codeGroups[idx];
+	}
+
+	Glyph* FontDataCCM::getGlyph(int idx)
+	{
+		if (idx < 0 || idx >= this->m_glyphs.size())
+			return nullptr;
+
+		return this->m_glyphs[idx];
+	}
+
+	Glyph* FontDataCCM::getGlyphByCharCode(int charCode)
+	{
+		for (size_t i = 0; i < this->m_codeGroups.size(); i++)
+		{
+			CodeGroup* codeGroup = this->m_codeGroups[i];
+
+			if (codeGroup->isCharCodeInRange(charCode))
+			{
+				int glyphIdx = codeGroup->getGlyphIndexForCharCode(charCode);
+				if (glyphIdx >= 0) return this->getGlyph(glyphIdx);
+			}
+		}
+
+		return nullptr;
 	}
 
 	bool FontDataCCM::save(std::wstring path, bool bBigEndian)

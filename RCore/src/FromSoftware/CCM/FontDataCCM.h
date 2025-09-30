@@ -21,6 +21,8 @@ namespace FontDataCCM
 		int getEndCode() const { return this->m_endCode; }
 		int getGlyphIndex() const { return this->m_glyphIndex; }
 
+		bool isCharCodeInRange(int charCode) const { return (charCode >= this->m_startCode && charCode <= this->m_endCode); }
+		int getGlyphIndexForCharCode(int charCode) const;
 	protected:
 		CodeGroup() {}
 		~CodeGroup() {}
@@ -78,8 +80,12 @@ namespace FontDataCCM
 
 		bool getInitStatus() const { return this->m_init; }
 
+		int getNumCodeGroups() const { return this->m_codeGroups.size(); }
 		int getNumGlyphs() const { return this->m_glyphs.size(); }
+
+		CodeGroup* getCodeGroup(int idx);
 		Glyph* getGlyph(int idx);
+		Glyph* getGlyphByCharCode(int charCode);
 
 		int getFontHeight() const { return this->m_fontHeight; }
 		int getTextureWidth() const { return this->m_textureWidth; }
