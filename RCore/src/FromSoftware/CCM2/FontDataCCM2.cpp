@@ -233,7 +233,7 @@ namespace FontDataCCM2
 		ccm2.glyphCount = (UINT)this->m_glyphs.size();
 		ccm2.texRegionOffset = sizeof(CCM2::CCM2);
 		ccm2.glyphOffset = ccm2.texRegionCount * sizeof(CCM2::TexRegion) + sizeof(CCM2::CCM2);
-		ccm2.bVar1C = 4;
+		ccm2.bVar1C = 0;
 		ccm2.isBigEndian = this->m_bBigEndian;
 		ccm2.textureCount = (USHORT)this->m_numTextures;
 

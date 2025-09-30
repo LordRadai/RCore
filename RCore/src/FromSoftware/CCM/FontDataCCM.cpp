@@ -287,7 +287,7 @@ namespace FontDataCCM
 		ccm.glyphCount = (USHORT)this->m_glyphs.size();
 		ccm.codeGroupOffset = sizeof(CCM::CCM);
 		ccm.glyphOffset = sizeof(CCM::CCM) + ccm.codeGroupCount * sizeof(CCM::CodeGroup);
-		ccm.bVar1C = 1;
+		ccm.bVar1C = 0;
 		ccm.isBigEndian = this->m_bBigEndian;
 		ccm.textureCount = (BYTE)this->m_numTextures;
 
