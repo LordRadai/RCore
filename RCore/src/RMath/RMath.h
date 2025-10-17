@@ -34,9 +34,9 @@ namespace RMath
 	float degToRad(float angle);
 	float radToDeg(float angle);
 
-	DirectX::SimpleMath::Vector4 getFloatColor(BYTE* pColor);
-	DirectX::SimpleMath::Vector4 getFloatColor(BYTE r, BYTE g, BYTE b, BYTE a);
-	DirectX::SimpleMath::Vector4 getFloatColor(UINT color);
+	DirectX::SimpleMath::Vector4 getFloatColor(const BYTE* pColor);
+	DirectX::SimpleMath::Vector4 getFloatColor(const BYTE r, const BYTE g, const BYTE b, const BYTE a);
+	DirectX::SimpleMath::Vector4 getFloatColor(const UINT color);
 
 	UINT getHexColor(DirectX::SimpleMath::Vector4 color);
 

@@ -113,7 +113,7 @@ float RMath::radToDeg(float angle)
 	return ((angle / XM_2PI) * 360.f);
 }
 
-DirectX::SimpleMath::Vector4 RMath::getFloatColor(UINT color)
+DirectX::SimpleMath::Vector4 RMath::getFloatColor(const UINT color)
 {
 	Vector4 colorVec;
 
@@ -125,19 +125,19 @@ DirectX::SimpleMath::Vector4 RMath::getFloatColor(UINT color)
 	return colorVec;
 }
 
-DirectX::SimpleMath::Vector4 RMath::getFloatColor(BYTE* pColor)
+DirectX::SimpleMath::Vector4 RMath::getFloatColor(const BYTE* pColor)
 {
 	return getFloatColor(pColor[0], pColor[1], pColor[2], pColor[3]);
 }
 
-DirectX::SimpleMath::Vector4 RMath::getFloatColor(BYTE r, BYTE g, BYTE b, BYTE a)
+DirectX::SimpleMath::Vector4 RMath::getFloatColor(const BYTE r, const BYTE g, const BYTE b, const BYTE a)
 {
 	Vector4 colorVec;
 
-	colorVec.w = a / 255.0f;  // Extract Alpha
-	colorVec.z = b / 255.0f;  // Extract Red
-	colorVec.y = g / 255.0f;   // Extract Green
-	colorVec.x = r / 255.0f;          // Extract Blue
+	colorVec.w = a / 255.0f;	// Extract Alpha
+	colorVec.z = b / 255.0f;	// Extract Red
+	colorVec.y = g / 255.0f;	// Extract Green
+	colorVec.x = r / 255.0f;	// Extract Blue
 
 	return colorVec;
 }
