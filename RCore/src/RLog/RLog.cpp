@@ -91,6 +91,7 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 		break;
 	case MsgLevel_Error:
 		msg_level = "|\tERROR\t|";
+		break;
 	default:
 		break;
 	}
