@@ -97,7 +97,7 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	}
 
 	msg_body = fmt;
-	vsprintf_s(msg, ("| ThreadID=" + thread_id + " | " + msg_level + " | " + msg_body).c_str(), args);
+	vsprintf_s(msg, ("| " + thread_id + " | " + msg_level + " | " + msg_body).c_str(), args);
 
 	std::string now = "[" + getCurrentDateTime("now") + "]";
 
