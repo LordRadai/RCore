@@ -89,7 +89,11 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	std::string threadName(result.begin(), result.end());
 
 	char threadNameBuf[256];
-	sprintf_s(threadNameBuf, "%s (%d)", threadName.c_str(), GetCurrentThreadId());
+
+	if (threadName != "")
+		sprintf_s(threadNameBuf, "%s", threadName.c_str());
+	else
+		sprintf_s(threadNameBuf, "%d", GetCurrentThreadId());
 
 	char msg[BUFFER_SIZE];
 
