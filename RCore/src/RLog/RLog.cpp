@@ -74,7 +74,22 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	__va_start(&args, fmt);
 	std::string msg_level;
 	std::string msg_body;
-	std::string thread_id = std::to_string(GetCurrentThreadId());
+
+
+	PWSTR name = nullptr;
+	HRESULT hr = GetThreadDescription(GetCurrentThread(), &name);
+	std::wstring result;
+
+	if (SUCCEEDED(hr) && name)
+	{
+		result = name;
+		LocalFree(name);
+	}
+
+	std::string threadName(result.begin(), result.end());
+
+	char threadNameBuf[256];
+	sprintf_s(threadNameBuf, "%s (%d)", threadName.c_str(), GetCurrentThreadId());
 
 	char msg[BUFFER_SIZE];
 
@@ -97,7 +112,7 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	}
 
 	msg_body = fmt;
-	vsprintf_s(msg, ("| " + thread_id + " | " + msg_level + " | " + msg_body).c_str(), args);
+	vsprintf_s(msg, ("| " + std::string(threadNameBuf) + " | " + msg_level + " | " + msg_body).c_str(), args);
 
 	std::string now = "[" + getCurrentDateTime("now") + "]";
 
