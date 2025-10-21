@@ -102,7 +102,7 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	std::string now = "[" + getCurrentDateTime("now") + "]";
 
 	std::stringstream ss;
-	ss << now << '\t' << msg;
+	ss << now << ' ' << msg;
 
     std::string msg_str = ss.str();
     const char* msg_ptr = msg_str.c_str();
@@ -127,7 +127,7 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 	std::string now = "[" + getCurrentDateTime("now") + "]";
 
 	std::stringstream ss;
-	ss << now << '\t' << msg;
+	ss << now << ' ' << msg;
 
 	std::string msg_str = ss.str();
 	const char* msg_ptr = msg_str.c_str();
@@ -152,7 +152,7 @@ void RLog::panicMessage(const char* fmt, ...)
 	std::string now = "[" + getCurrentDateTime("now") + "]";
 
 	std::stringstream ss;
-	ss << now << '\t' << msg;
+	ss << now << ' ' << msg;
 
 	std::string msg_str = ss.str();
 	const char* msg_ptr = msg_str.c_str();
@@ -177,7 +177,7 @@ void RLog::addEntry(bool print_time, const char* fmt, ...)
 	std::string now = "[" + getCurrentDateTime("now") + "]";
 
 	std::stringstream ss;
-	ss << now << '\t' << msg;
+	ss << now << ' ' << msg;
 
 	std::string msg_str = ss.str();
 	const char* msg_ptr = msg_str.c_str();
