@@ -81,17 +81,16 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	switch (level)
 	{
 	case MsgLevel_Debug:
-		msg_level = "[DEBUG]";
+		msg_level = "|\tDEBUG\t|";
 		break;
 	case MsgLevel_Info:
-		msg_level = "[INFO]";
+		msg_level = "|\tINFO\t|";
 		break;
 	case MsgLevel_Warn:
-		msg_level = "[WARN]";
+		msg_level = "|\tWARN\t|";
 		break;
 	case MsgLevel_Error:
-		msg_level = "[ERROR]";
-		break;
+		msg_level = "|\tERROR\t|";
 	default:
 		break;
 	}
