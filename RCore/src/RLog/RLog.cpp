@@ -81,23 +81,23 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	switch (level)
 	{
 	case MsgLevel_Debug:
-		msg_level = "|\tDEBUG\t|";
+		msg_level = "| DEBUG |";
 		break;
 	case MsgLevel_Info:
-		msg_level = "|\tINFO\t|";
+		msg_level = "| INFO |";
 		break;
 	case MsgLevel_Warn:
-		msg_level = "|\tWARN\t|";
+		msg_level = "| WARN |";
 		break;
 	case MsgLevel_Error:
-		msg_level = "|\tERROR\t|";
+		msg_level = "| ERROR |";
 		break;
 	default:
 		break;
 	}
 
 	msg_body = fmt;
-	vsprintf_s(msg, ("(ThreadID=" + thread_id + ")" + " " + msg_level + " " + msg_body).c_str(), args);
+	vsprintf_s(msg, ("| ThreadID=" + thread_id + " |" + " " + msg_level + " " + msg_body).c_str(), args);
 
 	std::string now = "[" + getCurrentDateTime("now") + "]";
 
