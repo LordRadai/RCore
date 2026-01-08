@@ -1,24 +1,7 @@
 #include <time.h>
 #include <sstream>
 #include "RLog.h"
-
-inline std::string getCurrentDateTime(std::string format)
-{
-	time_t now = time(0);
-	struct tm tstruct = *localtime(&now);
-	char  buf[80];
-
-	if (format.compare("now") == 0)
-		strftime(buf, sizeof(buf), "%d-%m-%Y %X", &tstruct);
-	else if (format.compare("date") == 0)
-		strftime(buf, sizeof(buf), "%d-%m-%Y", &tstruct);
-	else if (format.compare("time") == 0)
-		strftime(buf, sizeof(buf), "%X", &tstruct);
-	else
-		RDebug::debuggerOut(MsgLevel_Error, MsgLevel_Error, "Invalid format type %s\n", format);
-
-	return std::string(buf);
-};
+#include "RTime/RTime.h"
 
 RLog::RLog()
 {
@@ -118,7 +101,7 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 	msg_body = fmt;
 	vsprintf_s(msg, ("| " + std::string(threadNameBuf) + " | " + msg_level + " | " + msg_body).c_str(), args);
 
-	std::string now = "[" + getCurrentDateTime("now") + "]";
+	std::string now = "[" + RTime::getTimeStamp("now") + "]";
 
 	std::stringstream ss;
 	ss << now << ' ' << msg;
@@ -143,7 +126,7 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
-	std::string now = "[" + getCurrentDateTime("now") + "]";
+	std::string now = "[" + RTime::getTimeStamp("now") + "]";
 
 	std::stringstream ss;
 	ss << now << ' ' << msg;
@@ -168,7 +151,7 @@ void RLog::panicMessage(const char* fmt, ...)
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
-	std::string now = "[" + getCurrentDateTime("now") + "]";
+	std::string now = "[" + RTime::getTimeStamp("now") + "]";
 
 	std::stringstream ss;
 	ss << now << ' ' << msg;
@@ -193,7 +176,7 @@ void RLog::addEntry(bool print_time, const char* fmt, ...)
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
 
-	std::string now = "[" + getCurrentDateTime("now") + "]";
+	std::string now = "[" + RTime::getTimeStamp("now") + "]";
 
 	std::stringstream ss;
 	ss << now << ' ' << msg;

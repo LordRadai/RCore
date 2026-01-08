@@ -7,12 +7,22 @@ namespace RTime
 		return std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 	}
 
-	std::string getTimeStamp()
+	std::string getTimeStamp(std::string format)
 	{
 		std::time_t time = getCurrentTime();
 
-		char buffer[20];
-		std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", std::localtime(&time));
-		return std::string(buffer);
+		struct tm tstruct = *localtime(&time);
+		char  buf[80];
+
+		if (format.compare("now") == 0)
+			strftime(buf, sizeof(buf), "%d-%m-%Y %X", &tstruct);
+		else if (format.compare("date") == 0)
+			strftime(buf, sizeof(buf), "%d-%m-%Y", &tstruct);
+		else if (format.compare("time") == 0)
+			strftime(buf, sizeof(buf), "%X", &tstruct);
+		else
+			throw std::invalid_argument("Invalid format type " + format);
+
+		return std::string(buf);
 	}
 }

@@ -8,5 +8,5 @@ namespace RTime
 	using Duration = Clock::duration;
 
 	std::time_t getCurrentTime();
-	std::string getTimeStamp();
+	std::string getTimeStamp(std::string format);
 }
