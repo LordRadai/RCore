@@ -243,6 +243,7 @@
     <ClInclude Include="RLog\TextLog\TextLog.h" />
     <ClInclude Include="RMath\RMath.h" />
     <ClInclude Include="RMemory\RMemory.h" />
+    <ClInclude Include="RSingleton\RSingleton.inl" />
     <ClInclude Include="RString\RString.h" />
     <ClInclude Include="RTime\RTime.h" />
     <ClInclude Include="RXML\RXML.h" />

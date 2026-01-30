@@ -99,6 +99,9 @@
     <ClInclude Include="RTime\RTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RSingleton\RSingleton.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">
