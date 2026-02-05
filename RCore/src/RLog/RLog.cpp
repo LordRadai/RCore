@@ -143,31 +143,6 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 		this->m_console->addLog(std::wstring(msg_ptr, msg_ptr + strlen(msg_ptr)).c_str());
 }
 
-void RLog::panicMessage(const char* fmt, ...)
-{
-	va_list args;
-	__va_start(&args, fmt);
-
-	char msg[BUFFER_SIZE];
-	vsprintf_s(msg, fmt, args);
-
-	std::string now = "[" + RTime::getTimeStamp("now") + "]";
-
-	std::stringstream ss;
-	ss << now << ' ' << msg;
-
-	std::string msg_str = ss.str();
-	const char* msg_ptr = msg_str.c_str();
-
-	if (this->m_logFile)
-		this->m_logFile->addLog(msg_ptr);
-
-	if (this->m_console)
-		this->m_console->addLog(std::wstring(msg_ptr, msg_ptr + strlen(msg_ptr)).c_str());
-
-	RDebug::systemPanic(this->m_logName.c_str(), msg_ptr);
-}
-
 void RLog::addEntry(bool print_time, const char* fmt, ...)
 {
 	va_list args;

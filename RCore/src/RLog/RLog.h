@@ -18,7 +18,6 @@ public:
 
 	void debugMessage(MsgLevel level, const char* fmt, ...);
 	void alertMessage(MsgLevel level, const char* fmt, ...);
-	void panicMessage(const char* fmt, ...);
 
 	void addEntry(bool print_time, const char* fmt, ...);
 	void setConsoleVisibility(bool bVisible) { this->m_console->setVisibility(bVisible); };

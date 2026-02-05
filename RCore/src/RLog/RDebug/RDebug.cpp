@@ -1,4 +1,7 @@
+#include <stdexcept>
 #include "RDebug.h"
+
+PanicMode s_panicMode = PanicMode_Abort;
 
 void RDebug::debuggerOut(UINT usr_level, MsgLevel level, const char* fmt, ...)
 {
@@ -43,7 +46,7 @@ void RDebug::debuggerOut(UINT usr_level, MsgLevel level, const char* fmt, ...)
 	OutputDebugStringA(msg);
 }
 
-void RDebug::systemPanic(const char* src_module, const char* fmt, ...)
+void RDebug::systemPanic(const char* src_module, int lineNum, const char* fmt, ...)
 {
 	va_list args;
 	__va_start(&args, fmt);
@@ -52,17 +55,24 @@ void RDebug::systemPanic(const char* src_module, const char* fmt, ...)
 
 	vsprintf_s(msg, fmt, args);
 
-	std::string txt_log_msg = "FATAL ERROR:" + std::string(msg);
+	char header[BUFFER_SIZE];
+	sprintf_s(header, "System panic! (%s, %d): \n", src_module, lineNum);
+
+	std::string txt_log_msg = header + std::string(msg);
 	txt_log_msg.erase(std::remove(txt_log_msg.begin(), txt_log_msg.end(), '\n'));
 
-	try
+	switch (s_panicMode)
 	{
-		throw std::exception(msg);
-	}
-	catch (std::exception& e)
-	{
-		ShowCursor(true);
-		MessageBoxA(NULL, e.what(), src_module, MB_ICONERROR);
+	case PanicMode_Throw:
+		throw std::runtime_error(txt_log_msg);
+		break;
+	case PanicMode_Abort:
+		break;
+	case PanicMode_InvokeDebugger:
+		__debugbreak();
+		break;
+	default:
+		break;
 	}
 
 	abort();
@@ -98,10 +108,15 @@ void RDebug::systemAlert(UINT usr_level, MsgLevel level, const char* src_module,
 		icon = MB_ICONERROR;
 		break;
 	default:
-		systemPanic(src_module, "Invalid debug level\n");
+		INVOKE_PANIC("Invalid message level %d.", level);
 		return;
 	}
 
 	ShowCursor(true);
 	MessageBoxA(NULL, msg, src_module, icon);
+}
+
+void RDebug::setPanicMode(PanicMode mode)
+{
+	s_panicMode = mode;
 }
