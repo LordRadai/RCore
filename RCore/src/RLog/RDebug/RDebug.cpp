@@ -69,12 +69,14 @@ void RDebug::systemPanic(const char* src_module, int lineNum, const char* fmt, .
 	case PanicMode_Abort:
 		break;
 	case PanicMode_InvokeDebugger:
+		OutputDebugStringA(txt_log_msg.c_str());
 		__debugbreak();
 		break;
 	default:
 		break;
 	}
 
+	OutputDebugStringA(txt_log_msg.c_str());
 	abort();
 }
 
