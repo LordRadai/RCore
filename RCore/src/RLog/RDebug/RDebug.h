@@ -29,4 +29,4 @@ namespace RDebug
 	void setPanicMode(PanicMode mode);
 }
 
-#define INVOKE_PANIC(fmt, ...) RDebug::systemPanic(__FILE__, __LINE__, fmt, __VA_ARGS__)
+#define INVOKE_PANIC(fmt, ...) RDebug::systemPanic(__FILE__, __LINE__, fmt, ##__VA_ARGS__)
