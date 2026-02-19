@@ -32,39 +32,39 @@ DirectX::XMMATRIX RMath::getRotationMatrixFromWorldMatrix(DirectX::XMMATRIX m_wo
 
 DirectX::XMMATRIX RMath::getRotationFrom2Vectors(DirectX::SimpleMath::Vector3 pointA, DirectX::SimpleMath::Vector3 pointB)
 {
-	XMMATRIX result = XMMatrixIdentity();
+	Vector3 top = (pointA.y > pointB.y) ? pointA : pointB;
+	Vector3 bottom = (pointA.y > pointB.y) ? pointB : pointA;
 
-	Vector3 euler = Vector3(0, 0, 0);
-	Vector3 diff = pointB - pointA;
+	// Compute capsule axis direction
+	Vector3 dir = top - bottom;
+	float length = dir.Length();
+	if (length < 1e-6f)
+		return XMMatrixIdentity();
 
-	if (diff.x == 0 && diff.z == 0)
+	dir.Normalize();
+
+	Vector3 modelForward(0, 1, 0);
+
+	// Check if already aligned or opposite
+	float dot = modelForward.Dot(dir);
+	if (fabs(dot - 1.0f) < 1e-6f)
 	{
-		if (diff.y >= 0)
-			result = XMMatrixRotationZ(XM_PI);
-		else
-			result = XMMatrixRotationZ(0);
-
-		return result;
+		// Already aligned
+		return XMMatrixIdentity();
+	}
+	if (fabs(dot + 1.0f) < 1e-6f)
+	{
+		// Opposite direction
+		return XMMatrixRotationX(XM_PI);
 	}
 
-	float distance = diff.Length();
+	// Compute rotation axis and angle
+	Vector3 axis = modelForward.Cross(dir);
+	axis.Normalize();
+	float angle = acos(dot);
 
-	euler.y = asin(diff.y / distance);
-
-	float distance_xz = distance * cos(euler.y);
-
-	euler.x = acos(diff.x / distance_xz);
-	euler.z = acos(diff.z / distance_xz);
-
-	XMMATRIX rot_x = XMMatrixRotationX(-euler.x);
-	XMMATRIX rot_y = XMMatrixRotationY(-euler.y);
-	XMMATRIX rot_z = XMMatrixRotationZ(-euler.z);
-
-	result = rot_x * result;
-	result = rot_y * result;
-	result = rot_z * result;
-
-	return result;
+	// Create rotation matrix
+	return XMMatrixRotationAxis(XMLoadFloat3(&axis), angle);
 }
 
 DirectX::SimpleMath::Vector3 RMath::getYawPitchRollFromMatrix(DirectX::XMMATRIX m_world)
