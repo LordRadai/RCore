@@ -17,7 +17,6 @@ DirectX::XMMATRIX RMath::getRotationMatrixFromLookAtVector(DirectX::SimpleMath::
 	return Matrix(right, up, forward);
 }
 
-
 DirectX::XMMATRIX RMath::getRotationMatrixFromWorldMatrix(DirectX::XMMATRIX m_world)
 {
 	DirectX::XMMATRIX rotation = m_world;
@@ -32,39 +31,39 @@ DirectX::XMMATRIX RMath::getRotationMatrixFromWorldMatrix(DirectX::XMMATRIX m_wo
 
 DirectX::XMMATRIX RMath::getRotationFrom2Vectors(DirectX::SimpleMath::Vector3 pointA, DirectX::SimpleMath::Vector3 pointB)
 {
-	Vector3 top = (pointA.y > pointB.y) ? pointA : pointB;
-	Vector3 bottom = (pointA.y > pointB.y) ? pointB : pointA;
+	XMMATRIX result = XMMatrixIdentity();
 
-	// Compute capsule axis direction
-	Vector3 dir = top - bottom;
-	float length = dir.Length();
-	if (length < 1e-6f)
-		return XMMatrixIdentity();
+	Vector3 euler = Vector3(0, 0, 0);
+	Vector3 diff = pointB - pointA;
 
-	dir.Normalize();
-
-	Vector3 modelForward(0, 1, 0);
-
-	// Check if already aligned or opposite
-	float dot = modelForward.Dot(dir);
-	if (fabs(dot - 1.0f) < 1e-6f)
+	if (diff.x == 0 && diff.z == 0)
 	{
-		// Already aligned
-		return XMMatrixIdentity();
-	}
-	if (fabs(dot + 1.0f) < 1e-6f)
-	{
-		// Opposite direction
-		return XMMatrixRotationX(XM_PI);
+		if (diff.y >= 0)
+			result = XMMatrixRotationZ(XM_PI);
+		else
+			result = XMMatrixRotationZ(0);
+
+		return result;
 	}
 
-	// Compute rotation axis and angle
-	Vector3 axis = modelForward.Cross(dir);
-	axis.Normalize();
-	float angle = acos(dot);
+	float distance = diff.Length();
 
-	// Create rotation matrix
-	return XMMatrixRotationAxis(XMLoadFloat3(&axis), angle);
+	euler.y = asin(diff.y / distance);
+
+	float distance_xz = distance * cos(euler.y);
+
+	euler.x = acos(diff.x / distance_xz);
+	euler.z = acos(diff.z / distance_xz);
+
+	XMMATRIX rot_x = XMMatrixRotationX(-euler.x);
+	XMMATRIX rot_y = XMMatrixRotationY(-euler.y);
+	XMMATRIX rot_z = XMMatrixRotationZ(-euler.z);
+
+	result = rot_x * result;
+	result = rot_y * result;
+	result = rot_z * result;
+
+	return result;
 }
 
 DirectX::SimpleMath::Vector3 RMath::getYawPitchRollFromMatrix(DirectX::XMMATRIX m_world)
