@@ -20,6 +20,13 @@ namespace RString
 		return ss.str();
 	}
 
+	inline std::wstring floatToWString(float value, int precision = 3)
+	{
+		std::wstringstream ss;
+		ss << std::fixed << std::setprecision(precision) << value;
+		return ss.str();
+	}
+
 	inline std::wstring toWide(const std::string& s)
 	{
 		return std::wstring(s.begin(), s.end());
