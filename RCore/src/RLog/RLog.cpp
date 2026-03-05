@@ -54,7 +54,13 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 		return;
 
 	va_list args;
+
+#ifdef _WIN64
 	__va_start(&args, fmt);
+#else
+	va_start(args, fmt);
+#endif
+
 	std::string msg_level;
 	std::string msg_body;
 
@@ -121,7 +127,12 @@ void RLog::debugMessage(MsgLevel level, const char* fmt, ...)
 void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 {
 	va_list args;
+
+#ifdef _WIN64
 	__va_start(&args, fmt);
+#else
+	va_start(args, fmt);
+#endif
 
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);
@@ -146,7 +157,12 @@ void RLog::alertMessage(MsgLevel level, const char* fmt, ...)
 void RLog::addEntry(bool print_time, const char* fmt, ...)
 {
 	va_list args;
+
+#ifdef _WIN64
 	__va_start(&args, fmt);
+#else
+	va_start(args, fmt);
+#endif
 
 	char msg[BUFFER_SIZE];
 	vsprintf_s(msg, fmt, args);

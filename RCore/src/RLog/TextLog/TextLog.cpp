@@ -67,7 +67,13 @@ bool TextLog::addLog(const char* fmt, ...)
         return false;
 
     va_list args;
-	__va_start(&args, fmt);
+
+#ifdef _WIN64
+    __va_start(&args, fmt);
+#else
+    va_start(args, fmt);
+#endif
+
 	std::string msg;
 
 	char msg_buf[1000];

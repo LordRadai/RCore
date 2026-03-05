@@ -13,3 +13,4 @@
 #include "FromSoftware/BND4/BND4.h"
 #include "FromSoftware/CCM/FontDataCCM.h"
 #include "FromSoftware/CCM2/FontDataCCM2.h"
+#include "FromSoftware/EventMaker/EventMakerDef/EventMakerDef.h"

@@ -16,8 +16,7 @@ namespace RMemory
 
 	template <typename T> inline void fixPtr(T*& ptr, void* base)
 	{
-		if (ptr != nullptr)
-			ptr = reinterpret_cast<T*>((char*)ptr + (ptrdiff_t)base);
+		ptr = reinterpret_cast<T*>((char*)ptr + (ptrdiff_t)base);
 	}
 
 	inline ptrdiff_t getOffset(void* ptr, void* base)
@@ -29,7 +28,7 @@ namespace RMemory
 	template <typename T>
 	T endianSwap(T value) 
 	{
-		static_assert(std::is_fundamental<T>::value, "endian_swap requires a fundamental type");
+		//static_assert(std::is_fundamental<T>::value, "endian_swap requires a fundamental type");
 
 		T result;
 		uint8_t* src = reinterpret_cast<uint8_t*>(&value);

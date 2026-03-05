@@ -102,6 +102,12 @@
     <ClInclude Include="RSingleton\RSingleton.inl">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FromSoftware\EventMaker\EventMakerDef\EventMakerDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\EventMaker\EventMakerDef\EMEDF\EMEDF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">
@@ -180,6 +186,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RTime\RTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\EventMaker\EventMakerDef\EMEDF\EMEDF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\EventMaker\EventMakerDef\EventMakerDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
