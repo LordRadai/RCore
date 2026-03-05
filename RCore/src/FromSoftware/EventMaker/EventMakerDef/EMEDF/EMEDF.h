@@ -30,17 +30,54 @@ namespace EventMaker
 
         struct Argument
         {
+            enum Type
+            {
+                kTypeU8,
+                kTypeU16,
+                kTypeU32,
+                kTypeS8,
+                kTypeS16,
+                kTypeS32,
+                kTypeFloat32,
+
+                kNumTypes
+			};
+
             char* name;
             int type;
             Enum* pEnum;
-            int defaultValue;
-            int minValue;
-			int maxValue;
-            int incValue;
-            char* formatOffset;
+			size_t defaultValue;
+			size_t minValue;
+			size_t maxValue;
+			size_t incValue;
+            char* format;
             int pad;
 
             void locate(bool bigEndian, char* stringsBase, char* enumsBase);
+
+            template<typename T>
+            T getDefault() const { return *(T*)&defaultValue; }
+
+            template<typename T>
+            void setDefault(T v) { *(T*)&defaultValue = v; }
+
+            template<typename T>
+            T getMin() const { return *(T*)&minValue; }
+
+            template<typename T>
+            void setMin(T v) { *(T*)&minValue = v; }
+
+            template<typename T>
+            T getMax() const { return *(T*)&maxValue; }
+
+            template<typename T>
+            void setMax(T v) { *(T*)&maxValue = v; }
+
+            template<typename T>
+            T getIncrement() const { return *(T*)&incValue; }
+
+            template<typename T>
+            void setIncrement(T v) { *(T*)&incValue = v; }
 		};
 
         struct Instruction
@@ -80,23 +117,23 @@ namespace EventMaker
             short unk0A;
             int fileSize;
             int mainClassCount;
-            Class* mainClassesOffset;
+            Class* pMainClasses;
             int mainInstrCount;
-            Instruction* mainInstrsOffset;
+            Instruction* pMainInstructions;
             int mainArgCount;
-            Argument* mainArgsOffset;
+            Argument* pMainArguments;
             int extraClassCount;
-            Class* extraClassesOffset;
+            Class* pExtraClasses;
             int extraInstrCount;
-            Instruction* extraInstrsOffset;
+            Instruction* pExtraInstructions;
             int extraArgCount;
-            Argument* extraArgsOffset;
+            Argument* pExtraArguments;
             int enumCount;
-            Enum* enumsOffset;
+            Enum* pEnums;
             int enumValueCount;
-            EnumValue* enumValuesOffset;
+            EnumValue* pEnumValues;
             size_t stringsLength;
-            char* stringsOffset;
+            char* strings;
             size_t unk;
 
 #ifndef _WIN64

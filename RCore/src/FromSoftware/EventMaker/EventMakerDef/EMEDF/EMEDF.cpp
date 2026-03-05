@@ -42,7 +42,7 @@ namespace EventMaker
 				this->minValue = RMemory::endianSwap(this->minValue);
 				this->maxValue = RMemory::endianSwap(this->maxValue);
 				this->incValue = RMemory::endianSwap(this->incValue);
-				this->formatOffset = RMemory::endianSwap(this->formatOffset);
+				this->format = RMemory::endianSwap(this->format);
 				this->pad = RMemory::endianSwap(this->pad);
 			}
 
@@ -53,10 +53,10 @@ namespace EventMaker
 			else
 				this->pEnum = nullptr;
 
-			if ((size_t)this->formatOffset != INVALID_OFFSET)
-				RMemory::fixPtr(this->formatOffset, stringsBase);
+			if ((size_t)this->format != INVALID_OFFSET)
+				RMemory::fixPtr(this->format, stringsBase);
 			else
-				this->formatOffset = nullptr;
+				this->format = nullptr;
 		}
 
 		void Instruction::locate(bool bigEndian, char* stringBase, char* argBase)
@@ -99,60 +99,60 @@ namespace EventMaker
 				this->unk0A = RMemory::endianSwap(this->unk0A);
 				this->fileSize = RMemory::endianSwap(this->fileSize);
 				this->mainClassCount = RMemory::endianSwap(this->mainClassCount);
-				this->mainClassesOffset = RMemory::endianSwap(this->mainClassesOffset);
+				this->pMainClasses = RMemory::endianSwap(this->pMainClasses);
 				this->mainInstrCount = RMemory::endianSwap(this->mainInstrCount);
-				this->mainInstrsOffset = RMemory::endianSwap(this->mainInstrsOffset);
+				this->pMainInstructions = RMemory::endianSwap(this->pMainInstructions);
 				this->mainArgCount = RMemory::endianSwap(this->mainArgCount);
-				this->mainArgsOffset = RMemory::endianSwap(this->mainArgsOffset);
+				this->pMainArguments = RMemory::endianSwap(this->pMainArguments);
 				this->extraClassCount = RMemory::endianSwap(this->extraClassCount);
-				this->extraClassesOffset = RMemory::endianSwap(this->extraClassesOffset);
+				this->pExtraClasses = RMemory::endianSwap(this->pExtraClasses);
 				this->extraInstrCount = RMemory::endianSwap(this->extraInstrCount);
-				this->extraInstrsOffset = RMemory::endianSwap(this->extraInstrsOffset);
+				this->pExtraInstructions = RMemory::endianSwap(this->pExtraInstructions);
 				this->extraArgCount = RMemory::endianSwap(this->extraArgCount);
-				this->extraArgsOffset = RMemory::endianSwap(this->extraArgsOffset);
+				this->pExtraArguments = RMemory::endianSwap(this->pExtraArguments);
 				this->enumCount = RMemory::endianSwap(this->enumCount);
-				this->enumsOffset = RMemory::endianSwap(this->enumsOffset);
+				this->pEnums = RMemory::endianSwap(this->pEnums);
 				this->enumValueCount = RMemory::endianSwap(this->enumValueCount);
-				this->enumValuesOffset = RMemory::endianSwap(this->enumValuesOffset);
+				this->pEnumValues = RMemory::endianSwap(this->pEnumValues);
 				this->stringsLength = RMemory::endianSwap(this->stringsLength);
-				this->stringsOffset = RMemory::endianSwap(this->stringsOffset);
+				this->strings = RMemory::endianSwap(this->strings);
 				this->unk = RMemory::endianSwap(this->unk);
 			}
 
 			char* basePtr = reinterpret_cast<char*>(this);
-			RMemory::fixPtr(this->mainClassesOffset, basePtr);
-			RMemory::fixPtr(this->mainInstrsOffset, basePtr);
-			RMemory::fixPtr(this->mainArgsOffset, basePtr);
-			RMemory::fixPtr(this->extraClassesOffset, basePtr);
-			RMemory::fixPtr(this->extraInstrsOffset, basePtr);
-			RMemory::fixPtr(this->extraArgsOffset, basePtr);
-			RMemory::fixPtr(this->enumsOffset, basePtr);
-			RMemory::fixPtr(this->enumValuesOffset, basePtr);
-			RMemory::fixPtr(this->stringsOffset, basePtr);
+			RMemory::fixPtr(this->pMainClasses, basePtr);
+			RMemory::fixPtr(this->pMainInstructions, basePtr);
+			RMemory::fixPtr(this->pMainArguments, basePtr);
+			RMemory::fixPtr(this->pExtraClasses, basePtr);
+			RMemory::fixPtr(this->pExtraInstructions, basePtr);
+			RMemory::fixPtr(this->pExtraArguments, basePtr);
+			RMemory::fixPtr(this->pEnums, basePtr);
+			RMemory::fixPtr(this->pEnumValues, basePtr);
+			RMemory::fixPtr(this->strings, basePtr);
 
 			for (int i = 0; i < this->mainClassCount; i++)
-				this->mainClassesOffset[i].locate(bigEndian, this->stringsOffset, (char*)this->mainInstrsOffset);
+				this->pMainClasses[i].locate(bigEndian, this->strings, (char*)this->pMainInstructions);
 
 			for (int i = 0; i < this->mainInstrCount; i++)
-				this->mainInstrsOffset[i].locate(bigEndian, this->stringsOffset, (char*)this->mainArgsOffset);
+				this->pMainInstructions[i].locate(bigEndian, this->strings, (char*)this->pMainArguments);
 
 			for (int i = 0; i < this->mainArgCount; i++)
-				this->mainArgsOffset[i].locate(bigEndian, this->stringsOffset, (char*)this->enumsOffset);
+				this->pMainArguments[i].locate(bigEndian, this->strings, (char*)this->pEnums);
 
 			for (int i = 0; i < this->extraClassCount; i++)
-				this->extraClassesOffset[i].locate(bigEndian, this->stringsOffset, (char*)this->extraInstrsOffset);
+				this->pExtraClasses[i].locate(bigEndian, this->strings, (char*)this->pExtraInstructions);
 
 			for (int i = 0; i < this->extraInstrCount; i++)
-				this->extraInstrsOffset[i].locate(bigEndian, this->stringsOffset, (char*)this->extraArgsOffset);
+				this->pExtraInstructions[i].locate(bigEndian, this->strings, (char*)this->pExtraClasses);
 
 			for (int i = 0; i < this->extraArgCount; i++)
-				this->extraArgsOffset[i].locate(bigEndian, this->stringsOffset, (char*)this->enumsOffset);
+				this->pExtraArguments[i].locate(bigEndian, this->strings, (char*)this->pEnums);
 
 			for (int i = 0; i < this->enumCount; i++)
-				this->enumsOffset[i].locate(bigEndian, this->stringsOffset, (char*)this->enumValuesOffset);
+				this->pEnums[i].locate(bigEndian, this->strings, (char*)this->pEnumValues);
 
 			for (int i = 0; i < this->enumValueCount; i++)
-				this->enumValuesOffset[i].locate(bigEndian, this->stringsOffset);
+				this->pEnumValues[i].locate(bigEndian, this->strings);
 		}
 	}
 }

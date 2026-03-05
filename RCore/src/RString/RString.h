@@ -40,4 +40,5 @@ namespace RString
 	std::string replace(std::string str, std::string substr, std::string replacement);
 	std::string guidToString(GUID guid);
 	std::wstring shiftJisToWide(const char* str);
+	std::string shiftJisToUtf8(const char* str);
 }
