@@ -39,6 +39,8 @@ namespace EventMaker
                 kTypeS16,
                 kTypeS32,
                 kTypeFloat32,
+                kTypeFloat64,
+				kTypeString,
 
                 kNumTypes
 			};
