@@ -14,3 +14,4 @@
 #include "FromSoftware/CCM/FontDataCCM.h"
 #include "FromSoftware/CCM2/FontDataCCM2.h"
 #include "FromSoftware/EventMaker/EventMakerDef/EventMakerDef.h"
+#include "FromSoftware/Param/ParamDef/ParamDef.h"

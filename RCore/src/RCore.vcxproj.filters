@@ -108,6 +108,12 @@
     <ClInclude Include="FromSoftware\EventMaker\EventMakerDef\EMEDF\EMEDF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FromSoftware\Param\ParamDef\ParamDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FromSoftware\Param\ParamDef\PARAMDEF\PARAMDEF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RFile\RFile.cpp">
@@ -192,6 +198,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FromSoftware\EventMaker\EventMakerDef\EventMakerDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\Param\ParamDef\PARAMDEF\PARAMDEF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FromSoftware\Param\ParamDef\ParamDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
