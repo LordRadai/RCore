@@ -83,6 +83,9 @@ namespace Param
 				fieldSize = RMemory::endianSwap(fieldSize);
 				formatVersion = RMemory::endianSwap(formatVersion);
 			}
+
+			if (formatVersion != 105)
+				throw std::runtime_error("Unsupported PARAMDEF format version: " + std::to_string(formatVersion));
 		}
 
 		void PARAMDEF::locate()
