@@ -5,67 +5,102 @@ namespace Param
 {
 	namespace PARAMDEF
 	{
-		void Field::locate(bool bigEndian, char* stringBase)
+		namespace Format105
 		{
-			if (bigEndian)
-			{				
-				for (int i = 0; i < 32; i++)
-					editorName[i] = RMemory::endianSwap(editorName[i]);
-
-				defaultValue = RMemory::endianSwap(defaultValue);
-				minimum = RMemory::endianSwap(minimum);
-				maximum = RMemory::endianSwap(maximum);
-				increment = RMemory::endianSwap(increment);
-				editorFlags = RMemory::endianSwap(editorFlags);
-				byteCount = RMemory::endianSwap(byteCount);
-				description = RMemory::endianSwap(description);
-				sortID = RMemory::endianSwap(sortID);
-				bonusStringA = RMemory::endianSwap(bonusStringA);
-				bonusStringB = RMemory::endianSwap(bonusStringB);
-				bonusStringC = RMemory::endianSwap(bonusStringC);
-			}
-
-			if (description != nullptr)
-				RMemory::fixPtr(description, stringBase);
-
-			if (bonusStringA != nullptr)
-				RMemory::fixPtr(bonusStringA, stringBase);
-
-			if (bonusStringB != nullptr)
-				RMemory::fixPtr(bonusStringB, stringBase);
-
-			if (bonusStringC != nullptr)
-				RMemory::fixPtr(bonusStringC, stringBase);
-
-			// Endian swap the read strings
-			if (bigEndian)
+			void Field::locate(bool bigEndian, char* stringBase)
 			{
-				if (description)
+				if (bigEndian)
+				{
+					for (int i = 0; i < 32; i++)
+						editorName[i] = RMemory::endianSwap(editorName[i]);
+
+					defaultValue = RMemory::endianSwap(defaultValue);
+					minimum = RMemory::endianSwap(minimum);
+					maximum = RMemory::endianSwap(maximum);
+					increment = RMemory::endianSwap(increment);
+					editorFlags = RMemory::endianSwap(editorFlags);
+					byteCount = RMemory::endianSwap(byteCount);
+					description = RMemory::endianSwap(description);
+					sortID = RMemory::endianSwap(sortID);
+					bonusStringA = RMemory::endianSwap(bonusStringA);
+					bonusStringB = RMemory::endianSwap(bonusStringB);
+					bonusStringC = RMemory::endianSwap(bonusStringC);
+				}
+
+				if (description != nullptr)
+					RMemory::fixPtr(description, stringBase);
+
+				if (bonusStringA != nullptr)
+					RMemory::fixPtr(bonusStringA, stringBase);
+
+				if (bonusStringB != nullptr)
+					RMemory::fixPtr(bonusStringB, stringBase);
+
+				if (bonusStringC != nullptr)
+					RMemory::fixPtr(bonusStringC, stringBase);
+
+				// Endian swap the read strings
+				if (bigEndian)
+				{
+					if (description)
+					{
+						size_t len = wcslen(description);
+						for (size_t i = 0; i < len; i++)
+							description[i] = RMemory::endianSwap(description[i]);
+					}
+
+					if (bonusStringA)
+					{
+						size_t len = wcslen(bonusStringA);
+						for (size_t i = 0; i < len; i++)
+							bonusStringA[i] = RMemory::endianSwap(bonusStringA[i]);
+					}
+
+					if (bonusStringB)
+					{
+						size_t len = wcslen(bonusStringB);
+						for (size_t i = 0; i < len; i++)
+							bonusStringB[i] = RMemory::endianSwap(bonusStringB[i]);
+					}
+
+					if (bonusStringC)
+					{
+						size_t len = wcslen(bonusStringC);
+						for (size_t i = 0; i < len; i++)
+							bonusStringC[i] = RMemory::endianSwap(bonusStringC[i]);
+					}
+				}
+			}
+		}
+
+		namespace Format104
+		{
+			void Field::locate(bool bigEndian, char* stringBase)
+			{
+				if (bigEndian)
+				{
+					for (int i = 0; i < 32; i++)
+						editorName[i] = RMemory::endianSwap(editorName[i]);
+
+					defaultValue = RMemory::endianSwap(defaultValue);
+					minimum = RMemory::endianSwap(minimum);
+					maximum = RMemory::endianSwap(maximum);
+					increment = RMemory::endianSwap(increment);
+					editorFlags = RMemory::endianSwap(editorFlags);
+					byteCount = RMemory::endianSwap(byteCount);
+					description = RMemory::endianSwap(description);
+					sortID = RMemory::endianSwap(sortID);
+				}
+
+				if (description != nullptr)
+					RMemory::fixPtr(description, stringBase);
+
+				// Endian swap the read string
+				if (bigEndian && description)
 				{
 					size_t len = wcslen(description);
 					for (size_t i = 0; i < len; i++)
 						description[i] = RMemory::endianSwap(description[i]);
-				}
-
-				if (bonusStringA)
-				{
-					size_t len = wcslen(bonusStringA);
-					for (size_t i = 0; i < len; i++)
-						bonusStringA[i] = RMemory::endianSwap(bonusStringA[i]);
-				}
-
-				if (bonusStringB)
-				{
-					size_t len = wcslen(bonusStringB);
-					for (size_t i = 0; i < len; i++)
-						bonusStringB[i] = RMemory::endianSwap(bonusStringB[i]);
-				}
-
-				if (bonusStringC)
-				{
-					size_t len = wcslen(bonusStringC);
-					for (size_t i = 0; i < len; i++)
-						bonusStringC[i] = RMemory::endianSwap(bonusStringC[i]);
 				}
 			}
 		}
@@ -84,7 +119,7 @@ namespace Param
 				formatVersion = RMemory::endianSwap(formatVersion);
 			}
 
-			if (formatVersion != 105)
+			if (formatVersion != 105 && formatVersion != 104)
 				throw std::runtime_error("Unsupported PARAMDEF format version: " + std::to_string(formatVersion));
 		}
 
@@ -95,8 +130,16 @@ namespace Param
 			char* baseAddr = reinterpret_cast<char*>(this);
 			header.locate(baseAddr);
 
-			for (size_t i = 0; i < header.fieldCount; i++)
-				fields[i].locate(bigEndian, baseAddr);
+			if (header.formatVersion == 105)
+			{
+				for (size_t i = 0; i < header.fieldCount; i++)
+					fields105[i].locate(bigEndian, baseAddr);
+			}
+			else if (header.formatVersion == 104)
+			{
+				for (size_t i = 0; i < header.fieldCount; i++)
+					fields104[i].locate(bigEndian, baseAddr);	
+			}
 		}
 	}
 }

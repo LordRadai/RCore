@@ -5,34 +5,66 @@ namespace Param
 {
     namespace PARAMDEF
     {
-        struct Field
+        namespace Format105
         {
-            enum EditorFlags
+            struct Field
             {
-				EDITOR_FLAGS_NONE = 0,
-                EDITOR_FLAGS_WRAP = 1,
-                EDITOR_FLAGS_LOCK = 4
+                enum EditorFlags
+                {
+                    EDITOR_FLAGS_NONE = 0,
+                    EDITOR_FLAGS_WRAP = 1,
+                    EDITOR_FLAGS_LOCK = 4
+                };
+
+                wchar_t editorName[32];
+                char editorType[8];
+                char editorFormat[8];
+                float defaultValue;
+                float minimum;
+                float maximum;
+                float increment;
+                int editorFlags;
+                int byteCount;
+                wchar_t* description;
+                char engineType[32];
+                char engineName[32];
+                int sortID;
+                wchar_t* bonusStringA;
+                wchar_t* bonusStringB;
+                wchar_t* bonusStringC;
+
+                void locate(bool bigEndian, char* stringBase);
             };
+        }
 
-			wchar_t editorName[32];
-			char editorType[8];
-            char editorFormat[8];
-			float defaultValue;
-			float minimum;
-			float maximum;
-			float increment;
-			int editorFlags;
-			int byteCount;
-            wchar_t* description;
-			char engineType[32];
-			char engineName[32];
-            int sortID;
-            wchar_t* bonusStringA;
-			wchar_t* bonusStringB;
-			wchar_t* bonusStringC;
+        namespace Format104
+        {
+            struct Field
+            {
+                enum EditorFlags
+                {
+                    EDITOR_FLAGS_NONE = 0,
+                    EDITOR_FLAGS_WRAP = 1,
+                    EDITOR_FLAGS_LOCK = 4
+                };
 
-			void locate(bool bigEndian, char* stringBase);
-        };
+                wchar_t editorName[32];
+                char editorType[8];
+                char editorFormat[8];
+                float defaultValue;
+                float minimum;
+                float maximum;
+                float increment;
+                int editorFlags;
+                int byteCount;
+                wchar_t* description;
+                char engineType[32];
+                char engineName[32];
+                int sortID;
+
+                void locate(bool bigEndian, char* stringBase);
+            };
+        }
 
         struct Header
         {
@@ -52,7 +84,12 @@ namespace Param
         struct PARAMDEF
         {
             Header header;
-			Field fields[1];
+
+            union
+            {
+                Format105::Field fields105[1];
+				Format104::Field fields104[1];
+            };
 
 			void locate();
         };
