@@ -54,3 +54,12 @@ std::string RString::shiftJisToUtf8(const char* str)
 
 	return utf8;
 }
+
+std::string RString::wideToShiftJis(const std::wstring& wstr)
+{
+	// Convert UTF-16 -> Shift-JIS
+	int sjislen = WideCharToMultiByte(932, 0, wstr.c_str(), (int)wstr.size(), NULL, 0, NULL, NULL);
+	std::string sjis(sjislen, 0);
+	WideCharToMultiByte(932, 0, wstr.c_str(), (int)wstr.size(), sjis.data(), sjislen, NULL, NULL);
+	return sjis;
+}
