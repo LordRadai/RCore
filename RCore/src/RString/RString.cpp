@@ -63,3 +63,13 @@ std::string RString::wideToShiftJis(const std::wstring& wstr)
 	WideCharToMultiByte(932, 0, wstr.c_str(), (int)wstr.size(), sjis.data(), sjislen, NULL, NULL);
 	return sjis;
 }
+
+std::wstring RString::utf8ToWide(const std::string& str)
+{
+	std::string utf8(str);
+	// Convert UTF-8 -> UTF-16
+	int wlen = MultiByteToWideChar(CP_UTF8, 0, utf8.c_str(), (int)utf8.size(), NULL, 0);
+	std::wstring wstr(wlen, 0);
+	MultiByteToWideChar(CP_UTF8, 0, utf8.c_str(), (int)utf8.size(), wstr.data(), wlen);
+	return wstr;
+}
