@@ -43,4 +43,5 @@ namespace RString
 	std::string shiftJisToUtf8(const char* str);
 	std::string wideToShiftJis(const std::wstring& wstr);
 	std::wstring utf8ToWide(const std::string& utf8Str);
+	std::string wideToUtf8(const std::wstring& wstr);
 }

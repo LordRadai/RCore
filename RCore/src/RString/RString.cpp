@@ -73,3 +73,12 @@ std::wstring RString::utf8ToWide(const std::string& str)
 	MultiByteToWideChar(CP_UTF8, 0, utf8.c_str(), (int)utf8.size(), wstr.data(), wlen);
 	return wstr;
 }
+
+std::string RString::wideToUtf8(const std::wstring& wstr)
+{
+	// Convert UTF-16 -> UTF-8
+	int u8len = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), NULL, 0, NULL, NULL);
+	std::string utf8(u8len, 0);
+	WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), utf8.data(), u8len, NULL, NULL);
+	return utf8;
+}
