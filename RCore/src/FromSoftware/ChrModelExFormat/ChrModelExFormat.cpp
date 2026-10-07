@@ -67,11 +67,22 @@ namespace ChrModelExFormat
 		this->m_bones.clear();
 	}
 
-	Bone* ChrModelExFormat::getBone(int idx) const
+	Bone* ChrModelExFormat::getBoneAt(int idx) const
 	{
 		if (idx < 0 || idx >= m_bones.size())
 			return nullptr;
 
 		return m_bones[idx];
+	}
+
+	Bone* ChrModelExFormat::getBone(const std::wstring& name) const
+	{
+		for (size_t i = 0; i < this->m_bones.size(); i++)
+		{
+			if (this->m_bones[i]->getName() == name)
+				return this->m_bones[i];
+		}
+
+		return nullptr;
 	}
 }

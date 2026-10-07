@@ -43,7 +43,8 @@ namespace ChrModelExFormat
 		void destroy();
 
 		size_t getNumBones() const { return this->m_bones.size(); }
-		Bone* getBone(int idx) const;
+		Bone* getBoneAt(int idx) const;
+		Bone* getBone(const std::wstring& name) const;
 
 	private:
 		ChrModelExFormat() {}
