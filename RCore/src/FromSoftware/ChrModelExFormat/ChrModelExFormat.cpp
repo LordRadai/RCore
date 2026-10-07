@@ -65,6 +65,8 @@ namespace ChrModelExFormat
 		}
 
 		this->m_bones.clear();
+
+		delete this;
 	}
 
 	Bone* ChrModelExFormat::getBoneAt(int idx) const
