@@ -43,6 +43,18 @@ namespace ChrModelExFormat
 		}
 	}
 
+	ChrModelExFormat* ChrModelExFormat::createFromResource(FLVPWV::Header* flvpwvHeader)
+	{
+		ChrModelExFormat* chrModelExFormat = new ChrModelExFormat;
+
+		FLVPWV::Bone* flvpwvBones = reinterpret_cast<FLVPWV::Bone*>(reinterpret_cast<char*>(flvpwvHeader) + flvpwvHeader->BoneListOffset);
+		
+		for (size_t i = 0; i < flvpwvHeader->NumBones; i++)
+			chrModelExFormat->m_bones.push_back(Bone::createFromResource(&flvpwvBones[i]));
+
+		return chrModelExFormat;
+	}
+
 	void ChrModelExFormat::destroy()
 	{
 		for (size_t i = 0; i < this->m_bones.size(); i++)

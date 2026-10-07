@@ -35,6 +35,7 @@ namespace ChrModelExFormat
 		std::vector<Bone*> m_bones;
 	public:
 		static ChrModelExFormat* createFromFile(std::wstring filepath);
+		static ChrModelExFormat* createFromResource(FLVPWV::Header* flvpwvHeader);
 
 		void destroy();
 
