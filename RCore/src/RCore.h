@@ -9,9 +9,11 @@
 #include "RXML/RXML.h"
 #include "RTime/RTime.h"
 #include "RSingleton/RSingleton.inl"
+
 #include "Fromsoftware/TimeAct/TimeAct.h"
 #include "FromSoftware/BND4/BND4.h"
 #include "FromSoftware/CCM/FontDataCCM.h"
 #include "FromSoftware/CCM2/FontDataCCM2.h"
 #include "FromSoftware/EventMaker/EventMakerDef/EventMakerDef.h"
 #include "FromSoftware/Param/ParamDef/ParamDef.h"
+#include "FromSoftware/ChrModelExFormat/ChrModelExFormat.h"

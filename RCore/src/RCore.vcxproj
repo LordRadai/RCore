@@ -243,8 +243,10 @@
     <ClInclude Include="FromSoftware\CCM2\FontDataCCM2.h" />
     <ClInclude Include="FromSoftware\CCM\CCM\CCM.h" />
     <ClInclude Include="FromSoftware\CCM\FontDataCCM.h" />
+    <ClInclude Include="FromSoftware\ChrModelExFormat\FLVPWV\FLVPWV.h" />
     <ClInclude Include="FromSoftware\EventMaker\EventMakerDef\EMEDF\EMEDF.h" />
     <ClInclude Include="FromSoftware\EventMaker\EventMakerDef\EventMakerDef.h" />
+    <ClInclude Include="FromSoftware\ChrModelExFormat\ChrModelExFormat.h" />
     <ClInclude Include="FromSoftware\Param\ParamDef\ParamDef.h" />
     <ClInclude Include="FromSoftware\Param\ParamDef\PARAMDEF\PARAMDEF.h" />
     <ClInclude Include="FromSoftware\TimeAct\TAE3\TAE3.h" />
@@ -278,6 +280,7 @@
     <ClCompile Include="FromSoftware\CCM2\FontDataCCM2.cpp" />
     <ClCompile Include="FromSoftware\CCM\CCM\CCM.cpp" />
     <ClCompile Include="FromSoftware\CCM\FontDataCCM.cpp" />
+    <ClCompile Include="FromSoftware\ChrModelExFormat\ChrModelExFormat.cpp" />
     <ClCompile Include="FromSoftware\EventMaker\EventMakerDef\EMEDF\EMEDF.cpp" />
     <ClCompile Include="FromSoftware\EventMaker\EventMakerDef\EventMakerDef.cpp" />
     <ClCompile Include="FromSoftware\Param\ParamDef\ParamDef.cpp" />
