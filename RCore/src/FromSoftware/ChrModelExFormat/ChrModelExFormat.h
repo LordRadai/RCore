@@ -23,6 +23,7 @@ namespace ChrModelExFormat
 		float getRotationScale() const { return this->m_rotationScale; }
 		FLVPWV::Bone::TwistBoneType getType() const { return this->m_type; }
 
+		bool isTwistBone() const { return this->m_type != FLVPWV::Bone::TWIST_BONE_NONE; }
 	private:
 		Bone() {}
 		~Bone() {}
