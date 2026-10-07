@@ -8,6 +8,7 @@ namespace ChrModelExFormat
 {
 	class Bone
 	{
+		std::wstring m_name;
 		int16_t m_baseBone;
 		int16_t m_rotationAdditionBone;
 		float m_rotationScale;
@@ -18,6 +19,7 @@ namespace ChrModelExFormat
 
 		void destroy() { delete this; }
 
+		const wchar_t* getName() const { return this->m_name.c_str(); }
 		int16_t getBaseBone() const { return this->m_baseBone; }
 		int16_t getRotationAdditionBone() const { return this->m_rotationAdditionBone; }
 		float getRotationScale() const { return this->m_rotationScale; }

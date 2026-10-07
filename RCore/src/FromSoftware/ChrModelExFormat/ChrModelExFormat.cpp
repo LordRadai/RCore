@@ -9,6 +9,7 @@ namespace ChrModelExFormat
 	{
 		Bone* bone = new Bone;
 
+		bone->m_name = flvpwvBone->Name;
 		bone->m_baseBone = flvpwvBone->BaseBone;
 		bone->m_rotationAdditionBone = flvpwvBone->RotationAdditionBone;
 		bone->m_rotationScale = flvpwvBone->fRotationScale;
